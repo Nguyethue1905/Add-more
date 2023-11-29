@@ -1,0 +1,100 @@
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -40%);
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px;
+    z-index: 9999;
+    width: 30%;
+    height: 50%;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+.images{
+    height: 50%;
+    width: 50%;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    left:25%;
+    border:2px solid #08d5a9;
+
+}
+.images img{
+    border:2px solid #08d5a9;
+    border-radius: 50%;
+    
+}
+.custom-file-upload{
+    border: 1px solid #08d5a9;
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #08d5a9;
+}
+
+button[name="btn-change-img"] {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: #08d5a9;
+    border:none;
+    color:#fff;
+    width:20%;
+    border-radius:10px;
+}
+
+.upload-avatar{
+    width:140px;
+    position:relative;
+    margin:auto;
+    text-align:center;
+}
+.upload-avatar img{
+    border-radius:50%;
+    border:8px solid #DCDCDC;
+    width:125px;
+    height:125px;
+}
+
+.upload-avatar .rightRound{
+    position:absolute;
+    bottom:0;
+    right:0;
+    background:#00B4ff;
+    width:32px;
+    height:32px;
+    line-height:32px;
+    text-align:center;
+    border-radius:50%;
+    overflow:hidden;
+    cursor:pointer;
+
+}
+
+.form-avatar{
+    position: absolute;
+    z-index: 50;
+    bottom: -20px;
+    left: 45%;
+}
+

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="01d937f0-2ace-4aa0-9d7c-79b17fe84671" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="dev/huevtn" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Minh Tâm &lt;140230637+minhtamsad@users.noreply.github.com&gt;" />
+        <option value="tampq113 &lt;inetbumbaby123@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="qat" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2YQHQmFWGE1YNye5jyFjR3geYlr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev/huevtn",
+    "last_opened_file_path": "D:/Ampps/www/pc05839/Duan/media",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01d937f0-2ace-4aa0-9d7c-79b17fe84671" name="Changes" comment="" />
+      <created>1700450873036</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700450873036</updated>
+      <workItem from="1700450878331" duration="786000" />
+      <workItem from="1700451701203" duration="1563000" />
+      <workItem from="1700453394594" duration="798000" />
+      <workItem from="1700454240282" duration="2718000" />
+    </task>
+    <task id="LOCAL-00001" summary="[HTML] - Trang cá nhân (N5-20)">
+      <option name="closed" value="true" />
+      <created>1700453809381</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700453809382</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[HTML] - sidebar (N5-26)">
+      <option name="closed" value="true" />
+      <created>1700453913058</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700453913058</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[HTML]- Trang liên hệ(trợ giúp) , [HTML] - Footer (N5-28,N5-29)">
+      <option name="closed" value="true" />
+      <created>1700454662104</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700454662104</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[HTML]-  Header (N5-13)">
+      <option name="closed" value="true" />
+      <created>1700454934514</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700454934514</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[HTML]- Form chỉnh sửa tài khoản (N5-21 )">
+      <option name="closed" value="true" />
+      <created>1700455258515</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700455258515</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[HTML]- Đăng kí (N5-24)">
+      <option name="closed" value="true" />
+      <created>1700455390656</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700455390656</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[PHP]- Quên mật khẩu (N5-25)">
+      <option name="closed" value="true" />
+      <created>1700455474318</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700455474318</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[HTML]- Hiện tin nhắn,Trang thông báo (N5-27)">
+      <option name="closed" value="true" />
+      <created>1700455859668</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700455859668</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[HTML] - Bình luận +  [HTML] - Từng bài viết (N5-18 - N5-19)">
+      <option name="closed" value="true" />
+      <created>1700456112801</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700456112801</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dev/huevtn" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/qat" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dev/tamvm" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="[HTML] - Trang cá nhân (N5-20)" />
+    <MESSAGE value="[HTML] - sidebar (N5-26)" />
+    <MESSAGE value="[HTML]- Trang liên hệ(trợ giúp) , [HTML] - Footer (N5-28,N5-29)" />
+    <MESSAGE value="[HTML]-  Header (N5-13)" />
+    <MESSAGE value="[HTML]- Form chỉnh sửa tài khoản (N5-21 )" />
+    <MESSAGE value="[HTML]- Đăng kí (N5-24)" />
+    <MESSAGE value="[PHP]- Quên mật khẩu (N5-25)" />
+    <MESSAGE value="[HTML]- Hiện tin nhắn,Trang thông báo (N5-27)" />
+    <MESSAGE value="[HTML] - Bình luận +  [HTML] - Từng bài viết (N5-18 - N5-19)" />
+    <option name="LAST_COMMIT_MESSAGE" value="[HTML] - Bình luận +  [HTML] - Từng bài viết (N5-18 - N5-19)" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+</project>
