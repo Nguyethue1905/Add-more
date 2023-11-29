@@ -100,6 +100,9 @@ $action = "home";
                                     case "friend":
                                         include './View/friend.php';
                                         break;
+                                    case "searchfr":
+                                        include './View/searchfr.php';
+                                        break;
                                     case "edit":
                                         include './View/editacount.php';
                                         break;

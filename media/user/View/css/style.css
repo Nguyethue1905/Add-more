@@ -1486,6 +1486,8 @@ a > .add-btn {
 .newpst-input > form {
     display: inline-block;
     width: 100%;
+    border: 1px solid var(--main);
+    border-radius:5px;
 }
 .newpst-input textarea {
     float: left;

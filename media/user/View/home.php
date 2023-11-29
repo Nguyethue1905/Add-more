@@ -7,18 +7,17 @@ $select = $db->getList($user_id);
     <div class="central-meta">
         <div class="new-postbox">
             <figure>
-            <?php
-			$user_id = $_SESSION['id'];
-			$db = new profile();
-			$select = $db->getImg($user_id);
-			$avatar = $select['avatar'] ??"";
-			if($avatar == ""){
-				echo '<img src="./View/images/uploads/avatar.jpg" alt="" class="user-avatars">';
-				
-			}else{
-				echo '<img src="./View/images/uploads/'.$select['avatar'].'" alt="" class="user-avatars">';
-			}
-			?>
+                <?php
+                $user_id = $_SESSION['id'];
+                $db = new profile();
+                $select = $db->getImg($user_id);
+                $avatar = $select['avatar'] ?? "";
+                if ($avatar == "") {
+                    echo '<img src="./View/images/uploads/avatar.jpg" alt="" class="user-avatars">';
+                } else {
+                    echo '<img src="./View/images/uploads/' . $select['avatar'] . '" alt="" class="user-avatars">';
+                }
+                ?>
             </figure>
             <div class="newpst-input">
                 <form method="post" id="images-post" enctype="multipart/form-data">
@@ -30,106 +29,89 @@ $select = $db->getList($user_id);
                         <ul id="formList"></ul>
                         <li>
                             <label class="fileContainer">
-                                <i class="fa-solid fa-camera" style="color: #08d5a9; font-size:30px;"></i>
+                                <i class="fa-solid fa-camera" style="color: #08d5a9; font-size:30px;     position: relative;top: 6px;"></i>
                                 <input type="file" name="image[]" id="imageInput" multiple="multiple" accept="image/jpg, image/jpeg, image/png, image/gif" onchange="choseFile(this)" value="fdvdfbvdf">
 
                             </label>
                         </li>
                         <li>
-                            <button type="submit" name="upload">đăng bài</button>
+                            <button type="submit" name="upload" class="btn-post">Đăng</button>
                         </li>
                     </div>
                 </form>
             </div>
             <?php
-            if(isset($_POST['upload'])){
-                    // var_dump($_FILES['image']);
-                    $user_id = $_SESSION['id'];
-                    $content = $_POST['content']??"";
-                    $db = new posts();
-                    $text = $db->addPost($user_id, $content);
-                if(isset($_FILES['image'])){
+            if (isset($_POST['upload'])) {
+                // var_dump($_FILES['image']);
+                $user_id = $_SESSION['id'];
+                $content = $_POST['content'] ?? "";
+                $db = new posts();
+                $text = $db->addPost($user_id, $content);
+                if (isset($_FILES['image'])) {
 
                     //lấy ra posts_id
                     $get = $db->getid_post();
-                    foreach($get as $post){
+                    foreach ($get as $post) {
                         $_SESSION['posts_id'] = $post;
                     }
-                    
+
                     $files = $_FILES['image'];
                     // Lặp qua mảng các tệp tin
-                    foreach($files['tmp_name'] as $key => $tmp_name){
+                    foreach ($files['tmp_name'] as $key => $tmp_name) {
                         $filename = $files['name'][$key];
                         $file_tmp = $files['tmp_name'][$key];
-    
+
                         // Di chuyển từng tệp tin vào thư mục đích
-                        move_uploaded_file($file_tmp, './View/images/uploads/'.$filename);
-                        
-                    
+                        move_uploaded_file($file_tmp, './View/images/uploads/' . $filename);
+
+
                         // Xử lý tệp tin, ví dụ: lưu tên tệp vào cơ sở dữ liệu
                         $posts_id = $_SESSION['posts_id'];
                         // var_dump($posts_id);exit();
-                        $img = $db->isetimg($filename,$posts_id);
-
+                        $img = $db->isetimg($filename, $posts_id);
                     }
                 }
-             
             }
-            
+
             ?>
-            <!-- <script>
-                var images = [];
-                console.log(images); // Mảng để lưu trữ các hình ảnh được chọn
-                function choseFile(fileInput) {
-                    if (fileInput.files && fileInput.files[0]) {
-                        var reader = new FileReader();
-                        console.log(reader);
+            <style>
+                .preview-image {
+                    width: 100px;
+                    /* Đổi kích thước ảnh nếu cần */
+                    height: 100px;
+                    margin-right: 10px;
+                    /* Thêm margin nếu cần */
+                    /* Thêm các thuộc tính CSS khác tùy ý */
+                }
+            </style>
 
-                        reader.onload = function(e) {
-                            if (images.length < 5) { // Giới hạn tối đa 5 hình ảnh
-                                images.push(e.target.result);
-                                console.log(images); // Thêm hình ảnh vào mảng
-                                displayImages();
+            <script>
+                function choseFile(input) {
+                    var preview = document.querySelector('#imageList');
 
-                            } else {
-                                alert("Chỉ được chọn tối đa 5 hình ảnh.");
-                            }
+                    if (input.files) {
+                        while (preview.firstChild) {
+                            preview.removeChild(preview.firstChild);
                         }
-                        reader.readAsDataURL(fileInput.files[0]);
-                        console.log(reader);
+
+                        var filesAmount = input.files.length;
+                        for (let i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+
+                            reader.onload = function(event) {
+                                var listItem = document.createElement('li');
+                                var img = document.createElement('img');
+                                img.src = event.target.result;
+                                img.classList.add('preview-image');
+                                listItem.appendChild(img);
+                                preview.appendChild(listItem);
+                            }
+
+                            reader.readAsDataURL(input.files[i]);
+                        }
                     }
                 }
-
-                function displayImages() {
-
-                    var imageList = document.getElementById('imageList');
-                    imageList.innerHTML = '';
-
-                    images.forEach(function(imageData, index) {
-                        var li = document.createElement('li');
-                        var img = document.createElement('img');
-                        img.src = imageData;
-                        img.style.width = '60px'; // Thiết lập kích thước của ảnh
-
-
-                        var deleteButton = document.createElement('button');
-                        deleteButton.innerText = 'x';
-                        deleteButton.onclick = function() {
-                            images.splice(index, 1); // Xóa ảnh từ mảng
-                            displayImages(); // Hiển thị lại danh sách hình ảnh mới
-
-
-
-                        };
-
-                        li.appendChild(img);
-                        li.appendChild(deleteButton);
-                        imageList.appendChild(li);
-                    });
-                }
-            </script> -->
-
-
+            </script>
         </div>
     </div><!-- add post new box -->
     <div class="loadMore">
