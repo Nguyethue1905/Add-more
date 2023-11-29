@@ -27,13 +27,21 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                <?php
+                                                 $user_id = $_GET['id'];
+                                                 $listuser = new post();
+                                                 $selecct =  $listuser->getList($user_id);
+                                                 foreach ($selecct as $item ) {
+                                                    echo '
                                                 <tr>
+                                                    <td>'.$item['username'].'</td>
                                                     <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><button type="button" class="btn btn-danger">Xóa</button></td>
+                                                    <td>'.$item['content'].'</td>
+                                                    <td>'.$item['date_post'].'</td>
+                                                    <td><a href="index.php?act=xoa&id='.$item['posts_id'].'"><button type="button" class="btn btn-danger">Xóa</button></a></td>
                                                 </tr>
+                                                ';}
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>

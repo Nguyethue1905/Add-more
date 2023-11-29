@@ -42,7 +42,6 @@
                                                 $user_id = $_GET['id'];
                                                 $comment = new User();
                                                 $get = $comment->getList($user_id);
-                                                
                                                     foreach ($get as $item) {
                                                         $date = $item['date_registered'];
                                                         echo ' 

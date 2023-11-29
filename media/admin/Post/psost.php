@@ -28,9 +28,8 @@
                                     <table class="table">
                                        <thead>
                                           <tr>
-                                             <th class="font-weight-bold">#</th>
+                                             <th class="font-weight-bold">Tên Người Post</th>
                                              <th class="font-weight-bold">Count</th>
-                                             <th class="font-weight-bold">Time</th>
                                              <th class="font-weight-bold">Chi Tiết</th>
                                              <th></th>
                                           </tr>
@@ -39,13 +38,12 @@
                                           <?php
                                           $listuser = new post();
                                           $selecct =  $listuser->getCount();
-                                          foreach ($selecct as $item) {
+                                          foreach ($selecct as $item ) {
                                              echo '
                                           <tr>
-                                             <td>'. $item['posts_id'].'</td>
-                                             <td></td>
-                                             <td>20/11/2003</td>
-                                             <td><a href="index.php?act=Ct_Post"><button type="button" style="margin-left: 5%;" class="btn btn-info">Chi Tiết</button></a></td>
+                                             <td>'.$item['username'].'</td>
+                                             <td>'.$item['count'].'</td>
+                                             <td><a href="index.php?act=Ct_Post&id='.$item['user_id'].'"><button type="button" style="margin-left: 5%;" class="btn btn-info">Chi Tiết</button></a></td>
                                           </tr>
                                           ';
                                           }

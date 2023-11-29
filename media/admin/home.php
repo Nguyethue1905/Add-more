@@ -12,6 +12,7 @@
                         </div>
                      </div>
                   </div>
+
                   <div class="row column1">
                      <div class="col-md-6 col-lg-3">
                         <div class="full counter_section margin_bottom_30">
@@ -50,12 +51,20 @@
                                  <i class="fa fa-user yellow_color"></i>
                               </div>
                            </div>
+                           <?php
+                           $listuser = new home();
+                           $selecct =  $listuser->getCount();
+                           foreach ($selecct as $item) {
+                              echo '
                            <div class="counter_no">
                               <div>
-                                 <p class="total_no">2500</p>
+                                 <p class="total_no">'. $item['count'].'</p>
                                  <p class="head_couter">user</p>
                               </div>
                            </div>
+                           ';
+                           }
+                           ?>
                         </div>
                      </div>
                      <div class="col-md-6 col-lg-3">

@@ -63,8 +63,9 @@ ob_start();
             ?>
         </div>
         <?php
+        include 'Listhome.php';
         include './User/user.php';
-        include './Post/postlist.php    ';
+        include './Post/postlist.php';
         include './model/model.php';
         include './model/login.php';
         $action = "home";
@@ -106,6 +107,9 @@ ob_start();
                 break;
             case "unlock":
                 include './User/unlock.php';
+                break;
+            case "xoa":
+                include './post/xoa.php';
                 break;
             case "logout":
                 unset($_SESSION['admin']);
