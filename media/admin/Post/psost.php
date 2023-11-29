@@ -28,6 +28,7 @@
                                     <table class="table">
                                        <thead>
                                           <tr>
+                                          <th class="font-weight-bold">STT</th>
                                              <th class="font-weight-bold">Tên Người Post</th>
                                              <th class="font-weight-bold">Count</th>
                                              <th class="font-weight-bold">Chi Tiết</th>
@@ -36,16 +37,23 @@
                                        </thead>
                                        <tbody>
                                           <?php
+                                          $tl = 1;
                                           $listuser = new post();
                                           $selecct =  $listuser->getCount();
-                                          foreach ($selecct as $item ) {
+                                          foreach ($selecct as $item) {
+                                             $count = $item['count'];
+                                             if ($count == 0){
+                                                echo"";
+                                             }else{
                                              echo '
                                           <tr>
-                                             <td>'.$item['username'].'</td>
-                                             <td>'.$item['count'].'</td>
-                                             <td><a href="index.php?act=Ct_Post&id='.$item['user_id'].'"><button type="button" style="margin-left: 5%;" class="btn btn-info">Chi Tiết</button></a></td>
+                                          <td>' . $tl++ . '</td>
+                                             <td>' . $item['username'] . '</td>
+                                             <td>' . $item['count'] . '</td>
+                                             <td><a href="index.php?act=Ct_Post&id=' . $item['user_id'] . '"><button type="button" style="margin-left: 5%;" class="btn btn-info">Chi Tiết</button></a></td>
                                           </tr>
                                           ';
+                                       }
                                           }
                                           ?>
                                        </tbody>

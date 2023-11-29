@@ -63,6 +63,7 @@ ob_start();
             ?>
         </div>
         <?php
+        include './cmt/cmtList.php';
         include 'Listhome.php';
         include './User/user.php';
         include './Post/postlist.php';
@@ -110,6 +111,9 @@ ob_start();
                 break;
             case "xoa":
                 include './post/xoa.php';
+                break;
+            case "del":
+                include './cmt/xoacmt.php';
                 break;
             case "logout":
                 unset($_SESSION['admin']);

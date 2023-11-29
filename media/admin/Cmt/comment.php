@@ -27,23 +27,37 @@
                               <table class="table">
                                  <thead>
                                     <tr>
-                                       <th class="font-weight-bold">#</th>
-                                       <th class="font-weight-bold">Products</th>
+                                    <th class="font-weight-bold">STT</th>
+                                       <th class="font-weight-bold">Id Người Post</th>
+                                       <th class="font-weight-bold">Nội Dung Bài Post</th>
                                        <th class="font-weight-bold">Count</th>
-                                       <th class="font-weight-bold">Time</th>
                                        <th></th>
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    <?php
+                                    $tl = 1;
+                                    $listuser = new comment();
+                                    $selecct =  $listuser->getCount();
+                                    foreach ($selecct as $item) {
+                                       $count = $item['count'];
+                                       if ($count == 0){
+                                          echo"";
+                                       }else{
+                                       echo '
                                     <tr>
-                                       <td>1</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
+                                       <td>' . $tl++ . '</td>
+                                       <td>' . $item['posts_id'] . '</td>
+                                       <td>' . $item['content'] . '</td>
+                                       <td>' . $item['count'] . '</td>
                                        <td>
-                                       <a href="index.php?act=Ct_cmt"><button type="button" class="btn btn-info">Chi Tiết</button></a>
+                                       <a href="index.php?act=Ct_cmt&id=' . $item['posts_id'] . '"><button type="button" class="btn btn-info">Chi Tiết</button></a>
                                        </td>
                                     </tr>
+                                    ';
+                                 }
+                                    }
+                                    ?>
                                  </tbody>
                               </table>
                            </div>
@@ -52,7 +66,7 @@
                   </div>
                </div>
             </div>
-         </div>        
+         </div>
       </div>
    </div>
 </div>

@@ -1,9 +1,7 @@
-
-
 <body class="dashboard dashboard_1">
     <div class="full_container">
         <div class="inner_container">
-           
+
             <div id="content">
                 <div class="row column2 graph margin_bottom_30">
                     <div class="col-md-l2 col-lg-12">
@@ -19,6 +17,7 @@
                                         <table class="table">
                                             <thead></thead>
                                             <tr>
+                                                <th class="font-weight-bold">Stt</th>
                                                 <th class="font-weight-bold">Người Bình Luận</th>
                                                 <th class="font-weight-bold">Nội Dung</th>
                                                 <th class="font-weight-bold">Thời Gian</th>
@@ -26,12 +25,23 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                <?php
+                                                $tl = 1;
+                                                $posts_id = $_GET['id'];
+                                                $comment = new comment();
+                                                $get = $comment->getList($posts_id);
+                                                foreach ($get as $item) {
+                                                    echo '
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><button type="button" class="btn btn-danger">Xóa</button></td>
+                                                <td>' . $tl++ . '</td>
+                                                    <td>' . $item['username'] . '</td>
+                                                    <td>' . $item['comment'] . '</td>
+                                                    <td>' . $item['date_cmt'] . '</td>
+                                                    <td><a href="index.php?act=del&id='.$item['cmt_id'].'&id_pt='.$posts_id.'"><button type="button" class="btn btn-danger">Xóa</button></a></td>
                                                 </tr>
+                                                ';
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
