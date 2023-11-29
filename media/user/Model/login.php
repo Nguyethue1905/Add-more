@@ -20,6 +20,12 @@ class login{
         $select = "select user_id from users where username='$username' and password='$password'";
         return $db->pdo_query($select);
     }
+    function getById($user_id)
+    {
+        $db = new connect();
+        $select = "select * from users where user_id = '$user_id'";
+        return $db->pdo_query_one($select);
+    }
 }
 
 class singin {

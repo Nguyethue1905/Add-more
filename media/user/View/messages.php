@@ -1,162 +1,118 @@
-<div class="col-lg-6">
-	<div class="central-meta">
-		<div class="messages">
-			<h5 class="f-title"><i class="fa-solid fa-comment" style="color: #936fff;"></i>Tất cả tin nhắn <span class="more-options"></span></h5>
-			<div class="message-box">
-				<ul class="peoples">
-					<li>
-						<figure>
-							<img src="./View/images/resources/friend-avatar2.jpg" alt="">
-							<span class="status f-online"></span>
-						</figure>
-						<div class="people-name">
-							<span>Molly cyrus</span>
-						</div>
-					</li>
-					<li>
 
-						<figure><img src="./View/images/resources/friend-avatar3.jpg" alt="">
-							<span class="status f-away"></span>
-						</figure>
-						<div class="people-name">
-							<span>Andrew</span>
-						</div>
-					</li>
-					<li>
 
-						<figure>
-							<img src="./View/images/resources/friend-avatar.jpg" alt="">
-							<span class="status f-online"></span>
-						</figure>
+    <!-- <ul id="chatList"></ul>
+    <input type="text" id="messageInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button> -->
 
-						<div class="people-name">
-							<span>jason bourne</span>
-						</div>
-					</li>
-					<li>
+	<div class="col-lg-6">
+						<div class="central-meta">
+									<div class="messages">
+										<h5 class="f-title"><i class="ti-bell"></i>All Messages <span class="more-options"><i class="fa fa-ellipsis-h"></i></span></h5>
+										<div class="message-box">
+											<ul class="peoples">
+										
+													<!-- // $login = new login();
+													// $all = $login->getByall();
+													// foreach ($all as $alls) {
+													// 	echo $tl = '<li>
+													// 		<figure><img src="./View/images/resources/userlist-1.jpg" alt="">
+													// 			<span class="status f-online"></span>
+													// 		</figure>
+													// 		<div class="people-name">
+													// 			<span>' . $alls['username'] . '</span>
+													// 		</div>
+													// 	</li>';
+													// } -->
+													
+										
+											</ul>
+											<div class="peoples-mesg-box">
+												<div class="conversation-head">
+													<figure><img src="images/resources/friend-avatar.jpg" alt=""></figure>
+													<span>jason bourne <i>online</i></span>
+												</div>
+												<ul class="chatting-area" id="chatList">
+													
+													
+												</ul>
+												<div class="message-text-container">
+												<input type="text" id="messageInput" placeholder="Type your message...">
+    											<button onclick="sendMessage()">Send</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
 
-						<figure><img src="./View/images/resources/friend-avatar4.jpg" alt="">
-							<span class="status off-online"></span>
-						</figure>
-						<div class="people-name">
-							<span>Sarah Grey</span>
-						</div>
-					</li>
-					<li>
-
-						<figure><img src="./View/images/resources/friend-avatar5.jpg" alt="">
-							<span class="status f-online"></span>
-						</figure>
-						<div class="people-name">
-							<span>bill doe</span>
-						</div>
-					</li>
-					<li>
-
-						<figure><img src="./View/images/resources/friend-avatar6.jpg" alt="">
-							<span class="status f-away"></span>
-						</figure>
-						<div class="people-name">
-							<span>shen cornery</span>
-						</div>
-					</li>
-					<li>
-
-						<figure><img src="./View/images/resources/friend-avatar7.jpg" alt="">
-							<span class="status off-online"></span>
-						</figure>
-						<div class="people-name">
-							<span>kill bill</span>
-						</div>
-					</li>
-					<li>
-
-						<figure><img src="./View/images/resources/friend-avatar8.jpg" alt="">
-							<span class="status f-online"></span>
-						</figure>
-						<div class="people-name">
-							<span>jasmin walia</span>
-						</div>
-					</li>
-					<li>
-
-						<figure><img src="./View/images/resources/friend-avatar6.jpg" alt="">
-							<span class="status f-online"></span>
-						</figure>
-						<div class="people-name">
-							<span>neclos cage</span>
-						</div>
-					</li>
-				</ul>
-				<div class="peoples-mesg-box" >
-					<div class="conversation-head">
-						<figure><img src="./View/images/resources/friend-avatar.jpg" alt=""></figure>
-						<span>jason bourne <i>online</i></span>
-					</div>
-					<ul class="chatting-area">
-						<li class="you">
-							<figure><img src="./View/images/resources/userlist-2.jpg" alt=""></figure>
-							<div id="user-chat"></div>
-						</li>
-						<li class="me">
-							<figure><img src="./View/images/resources/userlist-1.jpg" alt=""></figure>
-							
-							<div id="chat"></div>
-						</li>
-					</ul>
-					<div class="message-text-container">
-
-						<input type="text" id="messageInput" placeholder="Type your message...">
-    						<input type="text" id="targetInput" placeholder="Enter target username...">
-							<button title="send" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div><!-- centerl meta -->
-
-<?php
-        $user_id = $_SESSION['id'];
-    ?>
-
+	<?php
+		$user_id = $_SESSION['id'];
+		$login = new login();
+		$add = $login->getById($user_id);
+		$username = $add['username'];
+	?>
     <script>
-
-        const socket = new WebSocket('ws://localhost:3000');
+        const socket = new WebSocket('ws://localhost:4000');
 
         socket.addEventListener('open', (event) => {
             console.log('Connected to WebSocket server');
-            const userData = <?php echo $user_id ?>;
-            // Đăng ký thông tin của client
-            // const username = prompt('Enter your username:');
-            socket.send(JSON.stringify({ type: 'register', userData }));    
         });
 
-        socket.addEventListener('message', (event) => {
-            const data = JSON.parse(event.data);
-            console.log(data);
-            const chatDiv = document.getElementById('chat');
-            chatDiv.innerHTML += `<p><b>${data.sender}:</b> ${data.content}</p>`;
-            
-        });
+			socket.addEventListener('message', (event) => {
+			const data = JSON.parse(event.data);
+			const user_id = <?php echo $user_id ?>; // Assuming this is PHP code to echo the user_id
+			const chatList = document.getElementById('chatList');
+
+			let htmlOutput = '';
+
+			data.forEach(item => {
+				if (user_id !== item.userData) {
+					htmlOutput += `<li class="you">
+					<figure><img src="./View/images/resources/userlist-1.jpg" alt=""></figure>
+					<p>${item.userData}: ${item.content}</p>
+					</li>`;
+				}else{
+					htmlOutput += `<li class="me">
+									<figure><img src=".userlist-1.jpg" alt=""></figure>
+									<p>${item.userData}: ${item.content}</p>
+									</li>`;
+				}
+				
+			});
+
+			chatList.innerHTML = htmlOutput;	
+			// chatList.getElementsByTagName('li');
+			// var listItems = chatList.getElementsByTagName('li');
+			// if (listItems.length > 0) {
+			// // Lấy phần tử cuối cùng
+			// var lastItem = listItems[listItems.length - 1];
+
+			// // Bây giờ bạn có thể làm bất cứ điều gì với phần tử cuối cùng
+			// console.log(lastItem);
+			// lastItem.scrollTop = lastItem.scrollHeight;
+			// } else {
+			// console.log('Danh sách không có phần tử.');
+			// }
+			// htmlOutput.focus();
+
+		});
+		
+
+
 
         function sendMessage() {
             const messageInput = document.getElementById('messageInput');
-            const targetInput = document.getElementById('targetInput');
             const message = messageInput.value;
-            const target = targetInput.value;
-            const user_chat = document.getElementById('user-chat');
-            const userData = <?php echo $user_id ?>;
-            // Gửi tin nhắn đến máy chủ
-            socket.send(JSON.stringify({ type: 'message', content: message, target }));
+            const userData = '<? echo $username ?>';
+			const user_id = <? echo $user_id ?>;   // Thay thế bằng thông tin người dùng đăng nhập
+
+            // Gửi tin nhắn đến server
+            socket.send(JSON.stringify({ userData, content: message, user_id}));
+
+            // Xóa nội dung của input sau khi gửi
             messageInput.value = '';
-            targetInput.value = '';
-            user_chat.innerHTML += `<br><p><b>${userData}: </b>${message}</p>`;
-            
         }
-        // socket.on('open', (response) => {
-        // console.log('Server response:', response);
-        // });
+		
     </script>
-	
+
+

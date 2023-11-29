@@ -1,86 +1,80 @@
 // server.js
-
+const express = require('express');
+const { MongoClient } = require('mongodb');
 const WebSocket = require('ws');
-const server = new WebSocket.Server({ port: 3000 });
 
-const clients = new Map(); 
-const mysql = require('mysql2');// Dùng để lưu trữ thông tin của các client
+const app = express();
+const port = 4000;
 
-server.on('connection', (socket) => {
-    console.log('Client connected');
-    socket.on('message', (message) => {
-        console.log(`Received message: ${message}`);
-        const data = JSON.parse(message);
+const mongoDBURL = 'mongodb+srv://minhtam02:PZbGmi1nbqM3VHVR@atlascluster.zmmrco4.mongodb.net/database_web?retryWrites=true&w=majority';
+const dbName = 'database_web';
+const collectionName = 'database_web';
 
-        if (data.type === 'register') {
-            // Ghi đăng ký thông tin của client
-            clients.set(socket, { userData: data.userData });
-            console.log(`${data.userData} registered.`);
+// WebSocket server
+const wss = new WebSocket.Server({ noServer: true });
 
-                const userid = data.userData;                   
-                // const userid = clients.get(socket).userData;
-                // Tạo kết nối đến MySQL
-                const connection = mysql.createConnection({
-                host: 'localhost',
-                user: 'root',
-                password: '1905',
-                database: 'database_web'
-                });
+app.server = app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
 
-                // Kết nối đến MySQL
-                connection.connect((err) => {
-                if (err) {
-                    console.error('Error connecting to MySQL:', err);
-                    return;
-                }
-                console.log('Connected to MySQL');
-                });
-
-                // Truy vấn MySQL
-                const sqlQuery = "SELECT * FROM users WHERE user_id = ?";
-                connection.query(sqlQuery,[userid], (err, results) => {
-                if (err) {
-                    console.error('Error executing query:', err);
-                    return;
-                }
-
-                console.log('Query results:', results);
-
-                // Đóng kết nối sau khi hoàn thành
-                connection.end();
-                });
-
-                
-
-
-
-        } else if (data.type === 'message') {
-            // Gửi tin nhắn đến một client cụ thể hoặc tất cả
-            if (data.target && clients.has(data.target)) {
-                const targetSocket = data.target;
-                targetSocket.send(JSON.stringify({
-                    type: 'message',
-                    sender: clients.get(socket).userData,
-                    content: data.content,  
-                }));
-            } else {
-                // Gửi đến tất cả các client nếu không có đối tượng mục tiêu
-                server.clients.forEach((client) => {
-                    if (client !== socket && client.readyState === WebSocket.OPEN) {
-                        client.send(JSON.stringify({
-                            type: 'message',
-                            sender: clients.get(socket).userData,
-                            content: data.content,
-                        }));
-                    }
-                });
-            }
-        }
-    });
-
-    socket.on('close', () => {
-        console.log('Client disconnected');
-        // Xóa thông tin của client khi họ đóng kết nối
-        clients.delete(socket);
+app.server.on('upgrade', (request, socket, head) => {
+    wss.handleUpgrade(request, socket, head, (ws) => {
+        wss.emit('connection', ws, request);
     });
 });
+
+wss.on('connection', (ws) => {
+    console.log('WebSocket connection established');
+
+    // Gửi dữ liệu đầu tiên (dữ liệu hiện tại trong MongoDB) cho người dùng mới kết nối
+    sendChatData(ws);
+
+    // Lắng nghe tin nhắn từ người dùng và lưu vào MongoDB
+    ws.on('message', (message) => {
+        saveChatMessage(JSON.parse(message));
+        // Gửi lại tin nhắn mới cho tất cả người dùng
+        broadcastChatData();
+    });
+});
+
+async function saveChatMessage(message) {
+    const client = new MongoClient(mongoDBURL, { useUnifiedTopology: true });
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection(collectionName);
+        await collection.insertOne(message);
+    } finally {
+        await client.close();
+    }
+}
+
+async function getChatData() {
+    const client = new MongoClient(mongoDBURL, { useUnifiedTopology: true });
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection(collectionName);
+        return await collection.find().toArray();
+    } finally {
+        await client.close();
+    }
+}
+
+function sendChatData(ws) {
+    getChatData().then(data => {
+        ws.send(JSON.stringify(data));
+    });
+}
+
+function broadcastChatData() {
+    wss.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            sendChatData(client);
+        }
+    });
+}
+
+
+
+
