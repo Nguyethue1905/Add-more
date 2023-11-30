@@ -25,7 +25,6 @@
   font-family: Arial, sans-serif;
   font-size: 14px;
   color: #08d5a9;
-
 }
 
 button[name="btn-change-img"] {
@@ -73,7 +72,6 @@ button[name="btn-change-img"] {
   left: 45%;
 }
 
-
 .btn-post {
   border-radius: 10px;
   border: 1px solid var(--main);
@@ -110,3 +108,4 @@ button[name="btn-change-img"] {
 
   max-height: 450px; /* Ẩn các ảnh từ ảnh thứ 6 trở đi */
 }
+
