@@ -157,6 +157,7 @@ $action = "home";
     <script src="./View/js/main.min.js"></script>
     <script src="./View/js/script.js"></script>
     <script src="./View/js/map-init.js"></script>
+    <script src="./View/asset/js/post.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 
     <!-- <script src="./asset/js/login.js"></script>  -->

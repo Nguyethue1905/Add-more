@@ -1,82 +1,109 @@
-:root{
-    --main : #08d5a9;
+:root {
+  --main: #08d5a9;
 }
-.images{
-    height: 50%;
-    width: 50%;
-    border-radius: 50%;
-    text-align: center;
-    position: relative;
-    left:25%;
-    border:2px solid #08d5a9;
-
+.images {
+  height: 50%;
+  width: 50%;
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  left: 25%;
+  border: 2px solid #08d5a9;
 }
-.images img{
-    border:2px solid #08d5a9;
-    border-radius: 50%;
-    
+.images img {
+  border: 2px solid #08d5a9;
+  border-radius: 50%;
 }
-.custom-file-upload{
-    border: 1px solid #08d5a9;
-    display: inline-block;
-    padding: 8px 12px;
-    cursor: pointer;
-    background-color: #fff;
-    border-radius: 4px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #08d5a9;
+.custom-file-upload {
+  border: 1px solid #08d5a9;
+  display: inline-block;
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #08d5a9;
 }
 
 button[name="btn-change-img"] {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background-color: #08d5a9;
-    border:none;
-    color:#fff;
-    width:20%;
-    border-radius:10px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background-color: #08d5a9;
+  border: none;
+  color: #fff;
+  width: 20%;
+  border-radius: 10px;
 }
 
-.upload-avatar{
-    width:140px;
-    position:relative;
-    margin:auto;
-    text-align:center;
+.upload-avatar {
+  width: 140px;
+  position: relative;
+  margin: auto;
+  text-align: center;
 }
-.upload-avatar img{
-    border-radius:50%;
-    border:8px solid #DCDCDC;
-    width:125px;
-    height:125px;
-}
-
-.upload-avatar .rightRound{
-    position:absolute;
-    bottom:0;
-    right:0;
-    background:#00B4ff;
-    width:32px;
-    height:32px;
-    line-height:32px;
-    text-align:center;
-    border-radius:50%;
-    overflow:hidden;
-    cursor:pointer;
-
+.upload-avatar img {
+  border-radius: 50%;
+  border: 8px solid #dcdcdc;
+  width: 125px;
+  height: 125px;
 }
 
-.form-avatar{
-    position: absolute;
-    z-index: 50;
-    bottom: -20px;
-    left: 45%;
+.upload-avatar .rightRound {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #00b4ff;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.btn-post{
-    border-radius: 10px;
-    border : 1px solid var(--main);
-    background-color:#fff;
-    color : var(--main);
+.form-avatar {
+  position: absolute;
+  z-index: 50;
+  bottom: -20px;
+  left: 45%;
+}
+
+.btn-post {
+  border-radius: 10px;
+  border: 1px solid var(--main);
+  background-color: #fff;
+  color: var(--main);
+}
+
+.preview-image {
+  width: 100px;
+  /* Đổi kích thước ảnh nếu cần */
+  height: 100px;
+  margin-right: 10px;
+  /* Thêm margin nếu cần */
+  /* Thêm các thuộc tính CSS khác tùy ý */
+}
+
+/* Định dạng các ảnh */
+.post-meta-img{
+
+}
+.post-meta-img img {
+  height: auto;
+  max-width: 300px;
+  max-height: 450px;
+  /* min-height:200px; */
+  /* border:1px solid var(--main); */
+  margin:3px;
+}
+
+/* Hiển thị tối đa 5 ảnh */
+.post-meta-img img:nth-child(n + 5) {
+  height: auto;
+  max-width: 200px;
+
+  max-height: 450px; /* Ẩn các ảnh từ ảnh thứ 6 trở đi */
 }
