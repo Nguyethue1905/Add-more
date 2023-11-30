@@ -6,9 +6,9 @@
 
 	<div class="top-area">
 		<div class="top-search">
-			<form method="post" class="">
-				<input type="text" placeholder="Tìm kiếm..." >
-				<button data-ripple><i class="ti-search" style="color:#08d5a9"></i></button>
+			<form method="POST" class="" action="index.php?act=searchfr">
+				<input type="text" name ="searchfr" placeholder="Tìm kiếm..." >
+				<button type = "submit" name = "searchfr-btn" data-ripple><i class="ti-search" style="color:#08d5a9"></i></button>
 			</form>
 		</div>
 		<ul class="setting-area">

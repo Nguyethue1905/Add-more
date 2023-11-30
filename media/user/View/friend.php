@@ -7,6 +7,8 @@
 			</ul>
 
 			<!-- Tab panes -->
+
+			
 			<div class="tab-content">
 				<div class="tab-pane active fade show " id="frends">
 					<ul class="nearby-contct">
@@ -117,113 +119,47 @@
 					</ul>
 					<div class="lodmore"><button class="btn-view btn-load-more"></button></div>
 				</div>
+
+				<!-- //ádhjas -->
 				<div class="tab-pane fade" id="frends-req">
 					<ul class="nearby-contct">
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/nearly5.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">Amy watson</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
+					
+						<?php
+							$user_id_s = $_SESSION['id'];
+							$looking_for_friends = new looking_for_friends();
+							$getidfol = $looking_for_friends-> getidfol($user_id_s);
+							foreach ($getidfol as $all){
+								// $user_ids = $_SESSION['id'];
+								$friendship_id = $all['id_fs'];
+								$_SESSION['friendship_id'] = $friendship_id;
 
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/nearly1.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">sophia Gate</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/nearly6.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">caty lasbo</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/friend-avatar9.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">jhon kates</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/nearly2.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">sara grey</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/nearly4.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">Sara grey</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/nearly3.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">Sexy cat</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="nearly-pepls">
-								<figure>
-									<a href="time-line.html" title=""><img src="./View/images/resources/friend-avatar9.jpg" alt=""></a>
-								</figure>
-								<div class="pepl-info">
-									<h4><a href="time-line.html" title="">jhon kates</a></h4>
-									<span>ftv model</span>
-									<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
-									<a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a>
-								</div>
-							</div>
-						</li>
+								$following_id = $all['fl_id']; 
+								$user_id = $all['idfrend'];
+								$status = $all['status'];
+
+
+								if ($friendship_id && $user_id_s == $following_id && $status == "Đã gữi lời mời "){
+									$getalls = $looking_for_friends->getid($user_id);
+									foreach ($getalls as $row){
+										echo '<li>
+										<div class="nearly-pepls">
+											<figure>
+												<a href="time-line.html" title=""><img src="./View/images/resources/nearly5.jpg" alt=""></a>
+											</figure>
+											<div class="pepl-info">
+												<h4><a href="time-line.html" title="">'.$row['name_count'].'</a></h4>
+												<span>ftv model</span>
+												<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
+												<form method="post">
+												<button type ="submit" name = "btbs"><a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a></button>
+												</form>
+											</div>
+										</div>
+									</li>';
+									}
+								}
+							}
+						?>
 					</ul>
 					<button class="btn-view btn-load-more"></button>
 				</div>
@@ -231,3 +167,15 @@
 		</div>
 	</div>
 </div><!-- centerl meta -->
+
+<?php
+if(isset($_POST['btbs'])){
+	$friendship_id = $_SESSION['friendship_id'];
+	$looking_for_friends = new looking_for_friends();
+	$getyes = $looking_for_friends->getyes($friendship_id);
+	if ($getyes == true) {
+		echo 'thành công';
+	}
+}
+
+?>

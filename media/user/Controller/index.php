@@ -35,6 +35,7 @@ ob_start();
     include './Model/profile.php';
     include './Model/upload-img.php';
     include './Model/posts.php';
+    include './Model/looking_for_friends.php';
 
 $action = "home";
 ?>
@@ -124,6 +125,12 @@ $action = "home";
                                     case "forgot_password":
                                         include './View/Forgot_password.php';
                                         break;
+                                    case "searchfr":
+                                        include './View/searchfr.php';
+                                        break;
+                                    case "send_friend_request":
+                                        include './View/send_friend_request.php';
+                                        break;
                                     case "logout":
                                         unset($_SESSION['user']);
                                         header("Location: index.php?act=login");
@@ -152,7 +159,8 @@ $action = "home";
         "";
     }
     ?>
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="./View/js/main.min.js"></script>
     <script src="./View/js/script.js"></script>
