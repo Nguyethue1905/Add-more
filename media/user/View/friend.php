@@ -149,7 +149,8 @@
 											<div class="pepl-info">
 												<h4><a href="time-line.html" title="">'.$row['name_count'].'</a></h4>
 												<span>ftv model</span>
-												<a href="#" title="" class="add-butn more-action" data-ripple="">Xóa lời mời</a>
+												
+												<a href="#" title="" class="add-butn more-action btnls"   data-idship="'.$friendship_id.'" data-ripple="" >Xóa lời mời</a>
 												<form method="post">
 												<button type ="submit" name = "btbs"><a href="#" title="" class="add-butn" data-ripple="">Đồng ý</a></button>
 												</form>
@@ -179,3 +180,30 @@ if(isset($_POST['btbs'])){
 }
 
 ?>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+    $(document).on("click", ".btnls", function() {
+        var button = $(this);
+        var idship = button.data('idship');
+		console.log(idship);
+        $.ajax({
+            url: "/user/ajax.php",
+            method: "POST",
+            data: {
+                action: "delete_fren",
+                idship: idship,
+            },
+            success: function(result) {
+                $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+                console.log(result);
+				if (result == true){
+					console.log("Bạn đã xoá thành công");
+					button.style("display = none");
+				}
+            }
+        });
+    });
+});
+</script>

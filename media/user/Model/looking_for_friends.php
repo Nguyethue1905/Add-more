@@ -53,6 +53,20 @@ class looking_for_friends
         $result = $db->pdo_query_one($sql);
         return $result;
     }
+    public function delete_idfen($friendship_id)
+    {
+        $db = new connect();
+        $sql =  "DELETE FROM friendship WHERE friendship_id = '$friendship_id'";
+        $result = $db->pdo_query_one($sql);
+        return $result;
+    }
+    public function all_frendship()
+    {
+        $db = new connect();
+        $sql =  "SELECT * FROM friendship";
+        $result = $db->pdo_query($sql);
+        return $result;
+    }
 
     
 }   
