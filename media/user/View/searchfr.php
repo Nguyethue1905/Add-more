@@ -12,7 +12,6 @@
 										$search_friends = $looking_for_friends->search_friends($searchfr);
 										if ($search_friends == true){
 											foreach ($search_friends as $friend){
-
 												echo $tl = '<li>
 												<div class="nearly-pepls">
 													<figure>
@@ -26,7 +25,7 @@
 													</div>
 												</div>
 											</li>';
-											}
+											}  
 										}else{
 											echo 'lỗi';
 										}

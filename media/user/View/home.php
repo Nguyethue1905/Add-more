@@ -126,6 +126,7 @@ $select = $db->getList($user_id);
                     <div class="friend-name">
                         <ins><a href="time-line.html" title=""><?= $name ?></a></ins>
                         <span><?= $timeString . ' trước' ?></span>
+
                     </div>
                     <div class="description">
                         <p>

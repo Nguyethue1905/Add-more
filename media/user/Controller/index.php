@@ -132,6 +132,9 @@ $action = "home";
                                     case "send_friend_request":
                                         include './View/send_friend_request.php';
                                         break;
+                                    case "notifications":
+                                        include './View/notifications.php';
+                                        break;
                                     case "logout":
                                         unset($_SESSION['user']);
                                         header("Location: index.php?act=login");

@@ -1,80 +1,35 @@
-// server.js
 const express = require('express');
-const { MongoClient } = require('mongodb');
-const WebSocket = require('ws');
+const webpush = require('web-push');
+const bodyParser = require('body-parser');
+const path = require('path');
 
+// Create express app.
 const app = express();
-const port = 4000;
 
-const mongoDBURL = 'mongodb+srv://minhtam02:PZbGmi1nbqM3VHVR@atlascluster.zmmrco4.mongodb.net/database_web?retryWrites=true&w=majority';
-const dbName = 'database_web';
-const collectionName = 'database_web';
+// Use body parser which we will use to parse request body that sending from client.
+app.use(bodyParser.json());
 
-// WebSocket server
-const wss = new WebSocket.Server({ noServer: true });
+// We will store our client files in ./client directory.
+app.use(express.static(path.join(__dirname, "client")))
 
-app.server = app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+const publicVapidKey = "BJXcJjiyjsAZJj0TKCoZ9n8swDABwNPmEAWSam7rNwtYkL09gUJidMltTxbKWt8UVwFEwyhwD4Pya0JF7va4ljA";
+
+const privateVapidKey = "Xzu5dDIfQD948n1YyUdzciaUHP0est5zAqI3UfeVO54";
+
+// Setup the public and private VAPID keys to web-push library.
+webpush.setVapidDetails("mailto:vominhtam1610sp@gmail.com", publicVapidKey, privateVapidKey);
+
+// Create route for allow client to subscribe to push notification.
+app.post('/subscribe', (req, res) => {
+    const subscription = req.body;
+    res.status(201).json({});
+    const payload = JSON.stringify({ title: "Hello World", body: "This is your first push notification" });
+
+    webpush.sendNotification(subscription, payload).catch(console.log);
+})
+
+const PORT = 5001;
+
+app.listen(PORT, () => {
+    console.log("Server started on port " + PORT);
 });
-
-app.server.on('upgrade', (request, socket, head) => {
-    wss.handleUpgrade(request, socket, head, (ws) => {
-        wss.emit('connection', ws, request);
-    });
-});
-
-wss.on('connection', (ws) => {
-    console.log('WebSocket connection established');
-
-    // Gửi dữ liệu đầu tiên (dữ liệu hiện tại trong MongoDB) cho người dùng mới kết nối
-    sendChatData(ws);
-
-    // Lắng nghe tin nhắn từ người dùng và lưu vào MongoDB
-    ws.on('message', (message) => {
-        saveChatMessage(JSON.parse(message));
-        // Gửi lại tin nhắn mới cho tất cả người dùng
-        broadcastChatData();
-    });
-});
-
-async function saveChatMessage(message) {
-    const client = new MongoClient(mongoDBURL, { useUnifiedTopology: true });
-    try {
-        await client.connect();
-        const database = client.db(dbName);
-        const collection = database.collection(collectionName);
-        await collection.insertOne(message);
-    } finally {
-        await client.close();
-    }
-}
-
-async function getChatData() {
-    const client = new MongoClient(mongoDBURL, { useUnifiedTopology: true });
-    try {
-        await client.connect();
-        const database = client.db(dbName);
-        const collection = database.collection(collectionName);
-        return await collection.find().toArray();
-    } finally {
-        await client.close();
-    }
-}
-
-function sendChatData(ws) {
-    getChatData().then(data => {
-        ws.send(JSON.stringify(data));
-    });
-}
-
-function broadcastChatData() {
-    wss.clients.forEach(client => {
-        if (client.readyState === WebSocket.OPEN) {
-            sendChatData(client);
-        }
-    });
-}
-
-
-
-

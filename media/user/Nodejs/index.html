@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real-time Chat</title>
-  <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push Notification Using Web-Push</title>
 </head>
 <body>
+    <h1>Push Notification Using Web-Push</h1>
 
-  <ul id="messages"></ul>
-  <form id="form" action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
-  </form>
 
-  <script>
-    const socket = io();
 
-    // Add event listener for form submission
-    document.querySelector('form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const messageInput = document.getElementById('m');
-      const message = messageInput.value;
 
-      // Emit the message to the server
-      socket.emit('chat message', message);
-
-      // Clear the input field
-      messageInput.value = '';
-      return false;
+    
+    <script src="./push.min.js"></script>
+    <script src="./client.js"></script>
+    <script src="../socket.io.js"></script> <!-- CDN link -->
+<script>
+  var socket = io.connect('http://localhost');
+  socket.on('pushNotification', function (data) {
+    console.log(data);
+    Push.create("Hello world!", {
+        body: data.msg, //this should print "hello"
+        icon: '/icon.png',
+        timeout: 4000,
+        onClick: function () {
+            window.focus();
+            this.close();
+        }
     });
-
-    // Listen for incoming chat messages from the server
-    socket.on('chat message', (msg) => {
-      const messages = document.getElementById('messages');
-      const li = document.createElement('li');
-      li.appendChild(document.createTextNode(msg));
-      messages.appendChild(li);
-    });
-  </script>
+  });
+</script>
 
 </body>
 </html>

@@ -5,8 +5,6 @@ include './Model/model.php';
 include './Model/comment.php';
 
 if($_POST['action'] == 'addfriend'){
-   
-
     $following_id = $_POST['id'] ?? "";
     $user_id  = $_POST['id_user'] ?? "";  
     $looking_for_friends = new looking_for_friends();
@@ -19,15 +17,8 @@ if($_POST['action'] == 'addfriend'){
     }else{
         echo "bạn đã kết bạn rồi";
     }
-
-
-
-    
-    
     //echo 
     echo true;
-
-
 }
 if ($_POST['action'] == 'delete_fren'){
     $friendship_id = $_POST['idship'] ?? "";
@@ -48,5 +39,17 @@ if($_POST['action'] == 'addPost'){
     if($add == true){
         echo "thanhd công nhe";
     }
+    echo true;
+}
+if($_POST['action'] == 'getyes'){
+	$friendship_id = $_POST['idyes'];
+	$looking_for_friends = new looking_for_friends();
+	$getyes = $looking_for_friends->getyes($friendship_id);
+	if ($getyes == true) {
+		echo 'thành công';
+        exit();
+	}else{
+		echo 'lỗi gi';
+	}
     echo true;
 }

@@ -81,23 +81,14 @@
 			});
 
 			chatList.innerHTML = htmlOutput;	
-			// chatList.getElementsByTagName('li');
-			// var listItems = chatList.getElementsByTagName('li');
-			// if (listItems.length > 0) {
-			// // Lấy phần tử cuối cùng
-			// var lastItem = listItems[listItems.length - 1];
-
-			// // Bây giờ bạn có thể làm bất cứ điều gì với phần tử cuối cùng
-			// console.log(lastItem);
-			// lastItem.scrollTop = lastItem.scrollHeight;
-			// } else {
-			// console.log('Danh sách không có phần tử.');
-			// }
-			// htmlOutput.focus();
+			scrollChatToBottom();
 
 		});
 		
-
+		function scrollChatToBottom() {
+        const chatList = document.getElementById('chatList');
+        chatList.scrollTop = chatList.scrollHeight;
+    }
 
 
         function sendMessage() {
