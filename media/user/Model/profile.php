@@ -29,7 +29,7 @@ class profile
     }
     public function getImg($user_id){
         $db = new connect();
-        $sql =  'SELECT avatar from userproflie where user_id = ' . $user_id;
+        $sql =  'SELECT avatar from userproflie where user_id = '. $user_id;
         $result = $db->pdo_query_one($sql);
         return $result; 
     }

@@ -8,10 +8,10 @@
       <div class="sidebar_user_info">
          <div class="icon_setting"></div>
          <div class="user_profle_side">
-            <div class="user_img"><img class="img-responsive" src="./images/layout_img/Screenshot 2023-11-23 002326.png" alt="#" />
+            <div class="user_img"><img class="img-responsive" src="./images/logo/runn.png" alt="#" />
             </div>
             <div class="user_info">
-               <h6>Nguyệt Huế</h6>
+               <h6>Admin</h6>
                <p><span class="online_animation"></span> Online</p>
             </div>
          </div>

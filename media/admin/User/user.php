@@ -57,6 +57,11 @@ class User{
         $select = "UPDATE users SET `user_status` = 2 WHERE `user_id` = '$user_id'";
         return $db->pdo_query($select);
     }
-   
 
+    public function getImg($user_id){
+        $db = new connect();
+        $sql =  'SELECT avatar from userproflie where user_id = '.$user_id;
+        $result = $db->pdo_query_one($sql);
+        return $result; 
+    }
 }
