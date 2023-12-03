@@ -1,0 +1,41 @@
+:root{
+    --main: #08d5a9;
+}
+/* Style cho dropdown post */
+.dropdown-post {
+    position: absolute;
+    display: inline-block;
+  }
+  
+  /* Nút chứa biểu tượng ba chấm */
+  .dropbtn {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    
+  }
+  
+  /* Dropdown content */
+  .dropdown-content {
+    display: none;
+   margin-right:10px;
+    position: absolute;
+    background-color: #fff;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid var(--main);
+    cursor: pointer;
+    color: var(--main);
+    font-weight:600;
+    text-align: center;
+  }
+  
+  /* Hiển thị dropdown content khi hover hoặc click vào nút */
+  .dropdown-post:hover .dropdown-content,
+  .dropdown-post:focus-within .dropdown-content {
+    display: block;
+  }
+  

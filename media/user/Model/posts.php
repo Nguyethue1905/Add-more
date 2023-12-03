@@ -69,5 +69,24 @@ class posts
         return $result;
     }
 
+    public function Delete($posts_id, $user_id){
+        $db = new connect();
+    
+        // Xóa dữ liệu từ bảng image
+        $sql1 = "DELETE FROM image WHERE posts_id = '$posts_id'";
+        $result1 = $db->pdo_query($sql1);
+    
+        // Xóa dữ liệu từ bảng comments
+        $sql2 = "DELETE FROM postscomment WHERE posts_id = '$posts_id'";
+        $result2 = $db->pdo_query($sql2);
+    
+        // Xóa dữ liệu từ bảng posts
+        $sql3 = "DELETE FROM posts WHERE posts_id = '$posts_id' AND user_id = '$user_id'";
+        $result3 = $db->pdo_query($sql3);
+    
+        return ($result1 && $result2 && $result3); // Trả về true nếu cả ba lệnh đều thành công
+    }
+    
+
 
 }

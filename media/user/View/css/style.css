@@ -872,36 +872,7 @@ header.sticky {
     right: -4px;
 }
 
-/* Style cho dropdown post */
-.dropdown-post {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Nút chứa biểu tượng ba chấm */
-  .dropbtn {
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  /* Dropdown content */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 120px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Hiển thị dropdown content khi hover hoặc click vào nút */
-  .dropdown-post:hover .dropdown-content,
-  .dropdown-post:focus-within .dropdown-content {
-    display: block;
-  }
-  
+
 
 /*--- timeline area ---*/
 

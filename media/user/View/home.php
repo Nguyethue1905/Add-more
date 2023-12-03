@@ -59,13 +59,11 @@ $select = $db->getList($user_id);
                         <ins><a href="time-line.html" title=""><?= $name ?></a></ins>
                         <span><?= $timeString ?></span>
                     </div>
+                    <!-- Delete post -->
                     <div class="dropdown-post">
                         <button class="dropbtn">&#8942;</button>
                         <div class="dropdown-content">
-                            <!-- Các lựa chọn trong dropdown menu -->
-                            <a href="#">Lựa chọn 1</a>
-                            <a href="#">Lựa chọn 2</a>
-                            <a href="#">Lựa chọn 3</a>
+                            <a class="delete" data-delete="<?= $get['posts_id'] ?>">Xóa bài viết</a>
                         </div>
                     </div>
 
@@ -125,7 +123,7 @@ $select = $db->getList($user_id);
                                     }
                                     ?>
                                     <input class="input" id="binhluan_<?= $get['posts_id'] ?>" type="text" name="contentcmt" placeholder="Bình luận">
-                                    <a class="inputs submit-cmt" type="submit" name="submit-cmt" data-post="<?= $get['posts_id'] ?>" placeholder="Bình luận"> gửi</a>
+                                    <a class="inputs submit-cmt" type="submit" name="submit-cmt" data-post="<?= $get['posts_id'] ?>" placeholder="Bình luận"> Gửi</a>
                                 </div>
                             </form>
                         </div>
@@ -191,6 +189,34 @@ $user_id = $_SESSION['id'];
 
 <script>
     jQuery(document).ready(function($) {
+        $(document).on("click", ".delete", function() {
+            var button = $(this);
+            var post_id = button.data('delete');
+            var user_id_in_js = <?php echo json_encode($user_id); ?>;
+            $.ajax({
+                url: "/user/ajax.php",
+                method: "POST",
+                data: {
+                    action: "deletepost",
+                    posts_id: post_id,
+                    user_id: user_id_in_js
+                },
+                success: function(text) {
+                    $("#weather-temp").html("<strong>" + text + "</strong> degrees");
+                    console.log(text);
+                    if (text == true) {
+                        console.log('Xóa thành công ');
+                        location.reload();
+                    } else {
+                        console.log('lỗi');
+                    }
+                }
+            });
+        });
+    });
+
+
+    jQuery(document).ready(function($) {
         $(document).on("click", ".submit-cmt", function() {
             var button = $(this);
             var post_id = button.data('post');
@@ -202,7 +228,7 @@ $user_id = $_SESSION['id'];
                 url: "/user/ajax.php",
                 method: "POST",
                 data: {
-                    action: "addPost",
+                    action: "addCmt",
                     posts_id: post_id,
                     user_id: user_id_in_js,
                     comment: content
@@ -211,7 +237,7 @@ $user_id = $_SESSION['id'];
                     $("#weather-temp").html("<strong>" + result + "</strong> degrees");
                     console.log(result);
                     if (result == true) {
-                        console.log('thành công ');
+                        console.log('thành công');
                         location.reload();
                     } else {
                         console.log('lỗi');

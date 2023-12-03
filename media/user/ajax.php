@@ -3,6 +3,7 @@
 include './Model/looking_for_friends.php';
 include './Model/model.php';
 include './Model/comment.php';
+include './Model/posts.php';
 
 if($_POST['action'] == 'addfriend'){
     $following_id = $_POST['id'] ?? "";
@@ -30,7 +31,7 @@ if ($_POST['action'] == 'delete_fren'){
     echo true;
 }
 
-if($_POST['action'] == 'addPost'){
+if($_POST['action'] == 'addCmt'){
     $user_id =  $_POST['user_id'] ?? "";
     $posts_id =  $_POST['posts_id'] ?? "";
     $comment =  $_POST['comment'] ?? "";
@@ -41,6 +42,18 @@ if($_POST['action'] == 'addPost'){
     }
     echo true;
 }
+if($_POST['action'] == 'deletepost'){
+    $user_id =  $_POST['user_id'] ?? "";
+    $posts_id =  $_POST['posts_id'] ?? "";
+    $db = new posts();
+    $add = $db->Delete($posts_id, $user_id);
+    if($add == true){
+        echo "thanhd công nhe";
+    }
+    echo true;
+}
+
+
 if($_POST['action'] == 'getyes'){
 	$friendship_id = $_POST['idyes'];
 	$looking_for_friends = new looking_for_friends();

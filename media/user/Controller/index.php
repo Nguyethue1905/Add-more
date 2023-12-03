@@ -26,6 +26,7 @@ ob_start();
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="./View/asset/css/login.css">
     <link rel="stylesheet" href="./View/asset/css/upload.css">
+    <link rel="stylesheet" href="./View/asset/css/post.css">
 
 </head>
 <?php
