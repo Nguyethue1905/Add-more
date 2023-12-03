@@ -30,7 +30,7 @@ class upload
 
 
     public function loadimg(){
-        if (isset($_FILES['image']['name'])) {
+        if (isset($_FILES['image-avatar']['name'])) {
             $user_id = $_SESSION['id'];
             $imgName = $_FILES['image']['name'];
             $imgSize = $_FILES['image']['size'];

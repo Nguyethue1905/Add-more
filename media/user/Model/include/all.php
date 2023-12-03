@@ -49,7 +49,7 @@ $name = $select['name_count'] ?? "";
 							<form class="edit-phto-ava">
 								<label class="fileContainer" style=" position: absolute;top:85%;color: #08d5a9;right: 20%;">
 									<i class="fa fa-camera-retro" style="font-size: 30px;"></i>
-									<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onclick="toggleElement()">
+									<input type="file" name="image-avatar" id="image" accept=".jpg, .jpeg, .png" onclick="toggleElement()">
 								</label>
 							</form>
 						</figure>

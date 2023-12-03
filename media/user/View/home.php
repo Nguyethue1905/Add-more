@@ -4,79 +4,11 @@ $select = $db->getList($user_id);
 ?>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <div class="col-lg-6">
-    <div class="central-meta">
-        <div class="new-postbox">
-            <figure>
-                <?php
-                $user_id = $_SESSION['id'];
-                $db = new profile();
-                $select = $db->getImg($user_id);
-                $avatar = $select['avatar'] ?? "";
-                if ($avatar == "") {
-                    echo '<img src="./View/images/uploads/avatar.jpg" alt="" class="user-avatars">';
-                } else {
-                    echo '<img src="./View/images/uploads/' . $select['avatar'] . '" alt="" class="user-avatars">';
-                }
-                ?>
-            </figure>
-            <div class="newpst-input">
-                <form method="post" id="images-post" enctype="multipart/form-data">
-                    <textarea rows="2" placeholder="Bạn đang nghĩ gì ?" name="content"></textarea>
-                    <div class="attachments">
-                        <ul id="imageList">
-                            <!-- <form action="" id=""></form> -->
-                        </ul>
-                        <ul id="formList"></ul>
-                        <li>
-                            <label class="fileContainer">
-                                <i class="fa-solid fa-camera" style="color: #08d5a9; font-size:30px;     position: relative;top: 6px;"></i>
-                                <input type="file" name="image[]" id="imageInput" multiple="multiple" accept="image/jpg, image/jpeg, image/png, image/gif" onchange="choseFile(this)" value="fdvdfbvdf">
-
-                            </label>
-                        </li>
-                        <li>
-                            <button type="submit" name="upload" class="btn-post">Đăng</button>
-                        </li>
-                    </div>
-                </form>
-            </div>
-            <?php
-            if (isset($_POST['upload'])) {
-                // var_dump($_FILES['image']);
-                $user_id = $_SESSION['id'];
-                $content = $_POST['content'] ?? "";
-                $db = new posts();
-                $text = $db->addPost($user_id, $content);
-                if (isset($_FILES['image'])) {
-
-                    //lấy ra posts_id
-                    $get = $db->getid_post();
-                    foreach ($get as $post) {
-                        $_SESSION['posts_id'] = $post;
-                    }
-
-                    $files = $_FILES['image'];
-                    // Lặp qua mảng các tệp tin
-                    foreach ($files['tmp_name'] as $key => $tmp_name) {
-                        $filename = $files['name'][$key];
-                        $file_tmp = $files['tmp_name'][$key];
-
-                        // Di chuyển từng tệp tin vào thư mục đích
-                        move_uploaded_file($file_tmp, './View/images/uploads/' . $filename);
-
-                        // Xử lý tệp tin, ví dụ: lưu tên tệp vào cơ sở dữ liệu
-                        $posts_id = $_SESSION['posts_id'];
-                        // var_dump($posts_id);exit();
-                        $img = $db->isetimg($filename, $posts_id);
-                    }
-                }
-            }
-
-            ?>
-        </div>
-    </div><!-- add post new box -->
     <?php
+    include './Model/include/add-post.php';
+    ?>
 
+    <?php
     $db = new posts();
     $user_id = $_SESSION['id'];
     $item = $db->getPost($user_id);
@@ -125,9 +57,18 @@ $select = $db->getList($user_id);
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title=""><?= $name ?></a></ins>
-                        <span><?= $timeString . ' trước' ?></span>
-
+                        <span><?= $timeString ?></span>
                     </div>
+                    <div class="dropdown-post">
+                        <button class="dropbtn">&#8942;</button>
+                        <div class="dropdown-content">
+                            <!-- Các lựa chọn trong dropdown menu -->
+                            <a href="#">Lựa chọn 1</a>
+                            <a href="#">Lựa chọn 2</a>
+                            <a href="#">Lựa chọn 3</a>
+                        </div>
+                    </div>
+
                     <div class="description">
                         <p>
                             <?= $get['content'] ?? "" ?>
@@ -142,7 +83,6 @@ $select = $db->getList($user_id);
                             $filename = $files['filename'] ?? "";
                             $count = 0;
                             foreach ($file as $files) {
-
                                 echo '<img src="./View/images/uploads/' . $files['filename'] . '" alt="Image">';
                             }
                         } elseif ($file == "") {
