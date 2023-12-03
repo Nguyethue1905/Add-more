@@ -3,7 +3,7 @@
 $user_id = $_SESSION['id'];
 $db = new profile();
 $select = $db->getList($user_id);
-$name = $select['name_count'];
+$name = $select['name_count'] ?? "";
 ?>
 <div class="feature-photo">
 	<form class="form-cover" id="form-cover" enctype="multipart/form-data" method="post">
@@ -61,7 +61,7 @@ $name = $select['name_count'];
 					<ul>
 						<li class="admin-name">
 							<span style="margin-bottom:20px;"><?=$name?></span>
-							<h6>( 89 Bạn bè)</h6>
+							<!-- <h6>( 89 Bạn bè)</h6> -->
 						</li>
 						<li>
 							<a href="./index.php?act=information" title="" class="button-view" data-ripple=""><i class="fa-solid fa-street-view" style="color: #08d5a9;"></i>Xem Thông tin</a>

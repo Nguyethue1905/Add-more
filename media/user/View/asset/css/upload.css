@@ -89,9 +89,6 @@ button[name="btn-change-img"] {
 }
 
 /* Định dạng các ảnh */
-.post-meta-img{
-
-}
 .post-meta-img img {
   height: auto;
   max-width: 300px;
@@ -109,3 +106,7 @@ button[name="btn-change-img"] {
   max-height: 450px; /* Ẩn các ảnh từ ảnh thứ 6 trở đi */
 }
 
+/* CSS cho ẩn hiện comment */
+.hiddenDiv {
+  display: none;
+}

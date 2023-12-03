@@ -24,3 +24,19 @@ function choseFile(input) {
         }
     }
 }
+//cmt hiện chi tiết
+    function toggleComments() {
+        var detailDiv = document.getElementById('myDiv');
+        var mainDiv = document.querySelector('.coment-area');
+    
+        if (detailDiv.classList.contains('hiddenDiv')) {
+            detailDiv.classList.remove('hiddenDiv');
+            mainDiv.classList.add('hiddenDiv');
+        } else {
+            detailDiv.classList.add('hiddenDiv');
+            mainDiv.classList.remove('hiddenDiv');
+        }
+    }
+    
+
+

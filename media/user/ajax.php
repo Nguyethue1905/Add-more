@@ -2,6 +2,7 @@
 
 include './Model/looking_for_friends.php';
 include './Model/model.php';
+include './Model/comment.php';
 
 if($_POST['action'] == 'addfriend'){
    
@@ -9,12 +10,8 @@ if($_POST['action'] == 'addfriend'){
     $following_id = $_POST['id'] ?? "";
     $user_id  = $_POST['id_user'] ?? "";  
     $looking_for_friends = new looking_for_friends();
-	$all_frendship = $looking_for_friends->all_frendship();
-    foreach($all_frendship as $row){
-        $friendship_id = $row['friendship_id'];
-        $id_us = $row['id_us'];
-        $fl_id = $row['fl_id'];
-    if ($user_id !== $following_id &&  !$friendship_id && $id_us == $user_id  && $fl_id !== $following_id) {
+	$all_frendship = $looking_for_friends->all_frendship($user_id, $following_id);
+    if ($user_id !== $following_id && !$all_frendship) {
 		$friendships = $looking_for_friends->friendships($user_id, $following_id);
         if ($friendships == true){            
             echo "Thành công rồi á";
@@ -23,7 +20,7 @@ if($_POST['action'] == 'addfriend'){
         echo "bạn đã kết bạn rồi";
     }
 
-    }
+
 
     
     
@@ -42,4 +39,14 @@ if ($_POST['action'] == 'delete_fren'){
     echo true;
 }
 
-
+if($_POST['action'] == 'addPost'){
+    $user_id =  $_POST['user_id'] ?? "";
+    $posts_id =  $_POST['posts_id'] ?? "";
+    $comment =  $_POST['comment'] ?? "";
+    $db = new comment();
+    $add = $db->getAdd($posts_id, $comment, $user_id);
+    if($add == true){
+        echo "thanhd công nhe";
+    }
+    echo true;
+}

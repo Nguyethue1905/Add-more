@@ -1,8 +1,8 @@
 <?php
 $db = new profile();
 $select = $db->getList($user_id);
-
 ?>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <div class="col-lg-6">
     <div class="central-meta">
         <div class="new-postbox">
@@ -64,7 +64,6 @@ $select = $db->getList($user_id);
                         // Di chuyển từng tệp tin vào thư mục đích
                         move_uploaded_file($file_tmp, './View/images/uploads/' . $filename);
 
-
                         // Xử lý tệp tin, ví dụ: lưu tên tệp vào cơ sở dữ liệu
                         $posts_id = $_SESSION['posts_id'];
                         // var_dump($posts_id);exit();
@@ -76,227 +75,208 @@ $select = $db->getList($user_id);
             ?>
         </div>
     </div><!-- add post new box -->
+    <?php
 
-    <div class="loadMore">
-        <?php
+    $db = new posts();
+    $user_id = $_SESSION['id'];
+    $item = $db->getPost($user_id);
+    foreach ($item as $get) {
+        $name = $get['name_count'] ?? "?     ?";
+        $posts_id = $get['posts_id'];
+        $_SESSION['posts_id'] = $posts_id;
         $db = new posts();
-        $item = $db->getList();
-        foreach ($item as $get) {
-            $name = $get['name_count'] ?? "?     ?";
-            $posts_id = $get['posts_id'];
-            $time = $db->getDate($posts_id);
+        $time = $db->getDate($posts_id);
 
+        // Thời gian ban đầu
+        $days = $time['days'];
+        $hours = $time['hours'];
+        $minutes = $time['minutes'];
 
-            // Thời gian ban đầu
-            $days = $time['days'];
-            $hours = $time['hours'];
-            $minutes = $time['minutes'];
+        // Chuyển đổi thời gian thành chuỗi "ngày giờ phút"
+        $timeString = '';
 
-            // Chuyển đổi thời gian thành chuỗi "ngày giờ phút"
-            $timeString = '';
+        if ($days > 0) {
+            $timeString .= $days . ' ngày ';
+        }
 
-            if ($days > 0) {
-                $timeString .= $days . ' ngày ';
-            }
+        if ($hours > 0) {
+            $timeString .= $hours . ' giờ ';
+        }
 
-            if ($hours > 0) {
-                $timeString .= $hours . ' giờ ';
-            }
+        if ($minutes > 0) {
+            $timeString .= $minutes . ' phút';
+        }
 
-            if ($minutes > 0) {
-                $timeString .= $minutes . ' phút';
-            }
+        echo '';
 
-
-        ?>
-
-            <div class="central-meta item">
-                <div class="user-post">
-                    <div class="friend-info">
-                        <figure>
-                            <?php
-                            $avatar = $get['avatar'] ?? "";
-                            if ($avatar == "") {
-                                echo '<img src="./View/images/uploads/avatar.jpg" alt="">';
-                            } else {
-                                echo '<img src="./View/images/uploads/' . $avatar . '" alt="">';
-                            }
-                            ?>
-                        </figure>
-                        <div class="friend-name">
-                            <ins><a href="time-line.html" title=""><?= $name ?></a></ins>
-                            <span><?= $timeString ?></span>
-                        </div>
-                        <div class="description">
-                            <p>
-                                <?= $get['content'] ?? "" ?>
-                            </p>
-                        </div>
-                        <div class="post-meta-img">
-
-                            <?php
-                            $posts_id = $get['posts_id'];
-                            $file = $db->getfile($posts_id);
-                            if ($file) {
-                                $count = 0;
-                                foreach ($file as $files) {
-
-                                    echo '<img src="./View/images/uploads/' . $files['filename'] . '" alt="Image">';
-                                }
-                            } elseif ($file['filename'] == "") {
-                                echo '<p></p>';
-                            }
-
-
-
-                            ?>
-
-                            <div class="we-video-info">
-                                <ul>
-                                    <li>
-                                        <span class="like" data-toggle="tooltip" title="like">
-                                            <i class="ti-heart"></i>
-                                            <ins>2.2k</ins>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="comment" data-toggle="tooltip" title="Comments">
-                                            <i class="fa fa-comments-o"></i>
-                                            <ins>52</ins>
-                                        </span>
-                                    </li>
-
-                                    <li class="social-media">
-                                        <div class="menu">
-                                            <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
-                                            </div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
-                                            </div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
-                                            </div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
-                                            </div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
-                                            </div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="rotater">
-                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="post-comt-box">
-                                <form method="post">
-                                    <div class="img-cmt">
-                                        <img src="./View/images/resources/comet-1.jpg" alt="" style="border-radius: 50%; width:55px; height:55px;">
-                                        <input class="input" type="text" placeholder="Bình luận">
-                                        <input class="inputs" type="submit" placeholder="Bình luận" value="Gửi">
-                                    </div>
-                                    <div class="smiles-bunch">
-                                        <i class="em em---1"></i>
-                                        <i class="em em-smiley"></i>
-                                        <i class="em em-anguished"></i>
-                                        <i class="em em-laughing"></i>
-                                        <i class="em em-angry"></i>
-                                        <i class="em em-astonished"></i>
-                                        <i class="em em-blush"></i>
-                                        <i class="em em-disappointed"></i>
-                                        <i class="em em-worried"></i>
-                                        <i class="em em-kissing_heart"></i>
-                                        <i class="em em-rage"></i>
-                                        <i class="em em-stuck_out_tongue"></i>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
+    ?>
+        <div class="central-meta item">
+            <div class="user-post">
+                <div class="friend-info">
+                    <figure>
+                        <?php
+                        $avatar = $get['avatar'] ?? "";
+                        if ($avatar == "") {
+                            echo '<img src="./View/images/uploads/avatar.jpg" alt="">';
+                        } else {
+                            echo '<img src="./View/images/uploads/' . $avatar . '" alt="" class="user-avatars">';
+                        }
+                        ?>
+                    </figure>
+                    <div class="friend-name">
+                        <ins><a href="time-line.html" title=""><?= $name ?></a></ins>
+                        <span><?= $timeString . ' trước' ?></span>
                     </div>
+                    <div class="description">
+                        <p>
+                            <?= $get['content'] ?? "" ?>
+                        </p>
+                    </div>
+                    <div class="post-meta-img">
 
+                        <?php
+                        $posts_id = $get['posts_id'];
+                        $file = $db->getfile($posts_id);
+                        if ($file) {
+                            $filename = $files['filename'] ?? "";
+                            $count = 0;
+                            foreach ($file as $files) {
 
-                    <div class="coment-area" style="margin-top: 30px;">
-                        <ul class="we-comet">
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="images/resources/comet-1.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                        <span>1 year ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                echo '<img src="./View/images/uploads/' . $files['filename'] . '" alt="Image">';
+                            }
+                        } elseif ($file == "") {
+                            echo '<p></p>';
+                        }
+                        ?>
+                        <div class="we-video-info">
+                            <ul>
+                                <!-- like -->
+                                <li>
+                                    <span class="like" data-toggle="tooltip" title="like">
+                                        <i class="ti-heart"></i>
+                                        <ins>2.2k</ins>
+                                    </span>
+                                </li>
+                                <!-- cmt -->
+                                <li>
+                                    <span class="comment" data-toggle="tooltip" title="Comments">
+                                        <i class="fa fa-comments-o"></i>
+                                        <ins>52</ins>
+                                    </span>
+                                </li>
+                                <!-- share -->
+                                <li class="social-media">
+                                    <div class="menu">
+                                        <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
                                     </div>
-                                    <p>we are working for the dance and sing songs. this car is very awesome for the
-                                        youngster. please vote this car and like our post</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="post-comt-box">
+                            <form method="post">
+                                <div class="img-cmt">
+                                    <?php
+                                    $avatar = $select['avatar'] ?? "";
+                                    if ($avatar == "") {
+                                        echo '<img src="./View/images/uploads/avatar.jpg" alt="" style="border-radius: 50%; width:55px; height:55px;">';
+                                    } else {
+                                        echo ' <img src="./View/images/uploads/' . $avatar . '" alt="" style="border-radius: 50%; width:55px; height:55px;" class="user-avatars">';
+                                    }
+                                    ?>
+                                    <input class="input" id="binhluan_<?= $get['posts_id'] ?>" type="text" name="contentcmt" placeholder="Bình luận">
+                                    <a class="inputs submit-cmt" type="submit" name="submit-cmt" data-post="<?= $get['posts_id'] ?>" placeholder="Bình luận"> gửi</a>
                                 </div>
-                                <ul>
-                                    <li>
-                                        <div class="comet-avatar">
-                                            <img src="../images/resources/comet-2.jpg" alt="">
-                                        </div>
-                                        <div class="we-comment">
-                                            <div class="coment-head">
-                                                <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-                                                <span>1 month ago</span>
-                                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                            </div>
-                                            <p>yes, really very awesome car i see the features of this car in the official
-                                                website of <a href="#" title="">#Mercedes-Benz</a> and really impressed :-)
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="comet-avatar">
-                                            <img src="../images/resources/comet-3.jpg" alt="">
-                                        </div>
-                                        <div class="we-comment">
-                                            <div class="coment-head">
-                                                <h5><a href="time-line.html" title="">Olivia</a></h5>
-                                                <span>16 days ago</span>
-                                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                            </div>
-                                            <p>i like lexus cars, lexus cars are most beautiful with the awesome features,
-                                                but this car is really outstanding than lexus</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="../images/resources/comet-1.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">Donald Trump</a></h5>
-                                        <span>1 week ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>we are working for the dance and sing songs. this video is very awesome for the
-                                        youngster. please vote this video and like our channel
-                                        <i class="em em-smiley"></i>
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php }  ?>
 
-    </div>
+                <!--cmt deatail start -->
+                <div class="coment-area" style="margin-top: 30px;">
+                    <ul class="we-comet" style=" max-height: 300px;  overflow-y: auto;">
+                        <?php
+                        $db = new comment();
+                        $cmt = $db->getListcmt($posts_id) ?? "";
+                        foreach ($cmt as $get) {
+
+                            $yourDateTime = $get['date_cmt'];
+
+                            $now = time();
+                            $yourDate = strtotime($yourDateTime);
+
+                            $difference = $now - $yourDate;
+
+                            $days = floor($difference / (60 * 60 * 24));
+                            $hours = floor(($difference - ($days * 60 * 60 * 24)) / (60 * 60));
+                            $minutes = floor(($difference - ($days * 60 * 60 * 24) - ($hours * 60 * 60)) / 60);
+
+
+                        ?>
+                            <li>
+                                <div class="comet-avatar">
+
+                                    <?php
+                                    $avatar = $get['avatar'] ?? "";
+                                    if ($avatar == "") {
+                                        echo '<img src="./View/images/uploads/avatar.jpg" alt="">';
+                                    } else {
+                                        echo '<img src="./View/images/uploads/' . $avatar . '" alt="" class="user-avatars"> ';
+                                    }
+                                    ?>
+                                </div>
+
+                                <div class="we-comment">
+                                    <div class="coment-head">
+                                        <h5><a href="" title=""><?= $get['name_count'] ?></a></h5>
+                                        <span><?= $days . ' ngày ' . $hours . ' giờ ' . $minutes . ' phút trước' ?></span>
+                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                    </div>
+                                    <p><?= $get['comment'] ?> </p>
+                                </div>
+
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <!-- cmt deatail end -->
+            </div>
+        </div>
+    <?php }  ?>
 </div>
+<?php
+$user_id = $_SESSION['id'];
+
+?>
+
+<script>
+    jQuery(document).ready(function($) {
+        $(document).on("click", ".submit-cmt", function() {
+            var button = $(this);
+            var post_id = button.data('post');
+            var content = $('#binhluan_' + post_id).val();
+            var user_id_in_js = <?php echo json_encode($user_id); ?>;
+
+            console.log(post_id, user_id_in_js, content);
+            $.ajax({
+                url: "/user/ajax.php",
+                method: "POST",
+                data: {
+                    action: "addPost",
+                    posts_id: post_id,
+                    user_id: user_id_in_js,
+                    comment: content
+                },
+                success: function(result) {
+                    $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+                    console.log(result);
+                    if (result == true) {
+                        console.log('thành công ');
+                        location.reload();
+                    } else {
+                        console.log('lỗi');
+                    }
+                }
+            });
+        });
+    });
+</script>

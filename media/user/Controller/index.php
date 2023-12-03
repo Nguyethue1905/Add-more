@@ -36,6 +36,7 @@ ob_start();
     include './Model/upload-img.php';
     include './Model/posts.php';
     include './Model/looking_for_friends.php';
+    include './Model/comment.php';
 
 $action = "home";
 ?>

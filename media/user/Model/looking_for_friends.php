@@ -60,13 +60,13 @@ class looking_for_friends
         $result = $db->pdo_query_one($sql);
         return $result;
     }
-    public function all_frendship()
+    public function all_frendship($user_id, $following_id)
     {
         $db = new connect();
-        $sql =  "SELECT * FROM friendship";
+        $sql =  "SELECT * FROM friendship WHERE (user_id = '$user_id' AND following_id = '$following_id') OR (user_id = '$following_id' AND following_id = '$user_id')";
         $result = $db->pdo_query($sql);
         return $result;
     }
 
     
-}   
+}
