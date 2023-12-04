@@ -34,7 +34,7 @@ class posts
         FROM users
         INNER JOIN userproflie ON users.user_id = userproflie.user_id
         INNER JOIN posts ON users.user_id = posts.user_id
-        INNER JOIN friendship ON users.user_id = friendship.user_id OR users.user_id = friendship.following_id
+        INNER JOIN friendship ON users.user_id = friendship.user_id OR users.user_id = friendship.following_id 
         WHERE ((friendship.status = "Kết bạn thành công" )AND (friendship.user_id = '.$user_id.' OR friendship.following_id = '.$user_id.')) 
         OR (users.user_id ='.$user_id .')
         GROUP BY posts.posts_id,userproflie.name_count,userproflie.avatar
@@ -112,5 +112,36 @@ class posts
         $result = $db->pdo_query_one($sql);
         return $result; 
     }
+    public function sergetPost($user_id, $posts_id){
+        $db = new connect();
+        $sql = "SELECT
+                    users.user_id,
+                    userproflie.name_count,
+                    userproflie.avatar,
+                    posts.posts_id,
+                    posts.content,
+                    posts.date_post
+                FROM
+                    users
+                INNER JOIN userproflie ON users.user_id = userproflie.user_id
+                INNER JOIN posts ON users.user_id = posts.user_id
+                INNER JOIN friendship ON users.user_id = friendship.user_id OR users.user_id = friendship.following_id
+                WHERE
+                    (
+                        (friendship.status = 'Kết bạn thành công' AND (friendship.user_id = $user_id OR friendship.following_id = $user_id))
+                        OR (users.user_id = $user_id)
+                    )
+                    AND posts.posts_id = $posts_id
+                GROUP BY
+                    posts.posts_id,
+                    userproflie.name_count,
+                    userproflie.avatar
+                ORDER BY
+                    posts.date_post DESC";
+        $result = $db->pdo_query_one($sql);
+        return $result;
+    }
+    
+
 
 }

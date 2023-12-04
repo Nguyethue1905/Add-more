@@ -16,8 +16,9 @@
 						$user_id = $_SESSION['id'];
 						$looking_for_friends = new looking_for_friends();
 						$list_frents = $looking_for_friends->list_frents($user_id);
-						if ($list_frents == true){
 							foreach($list_frents as $iem){
+								$user = $iem['user'];
+								if ($user_id !== $user)
 								echo '<li>
 								<div class="nearly-pepls">
 									<figure>
@@ -32,7 +33,7 @@
 								</div>
 							</li>';
 							}
-						}
+						
 
 						?>
 					</ul>
@@ -66,7 +67,7 @@
 												<a href="time-line.html" title=""><img src="./View/images/resources/nearly5.jpg" alt=""></a>
 											</figure>
 											<div class="pepl-info">
-												<h4><a href="time-line.html" title="">'.$row['name_count'] ?? "".'</a></h4>
+												<h4><a href="time-line.html" title="">'.$row['name_count'].'</a></h4>
 												<span>ftv model</span>
 												
 												<a href="#" title="" class="add-butn more-action btnls"   data-idship="'.$friendship_id.'" data-ripple="" >Xóa lời mời</a>
@@ -107,7 +108,7 @@ jQuery(document).ready(function($) {
                 console.log(result);
 				if (result == true){
 					console.log("Bạn đã xoá thành công");
-					button.style("display = none");
+
 				}
             }
         });

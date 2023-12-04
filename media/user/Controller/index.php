@@ -136,6 +136,9 @@ $action = "home";
                                     case "notifications":
                                         include './View/notifications.php';
                                         break;
+                                    case "insights":
+                                        include './View/insights.php';
+                                        break;
                                     case "logout":
                                         unset($_SESSION['user']);
                                         header("Location: index.php?act=login");

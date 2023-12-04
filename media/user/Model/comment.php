@@ -23,6 +23,16 @@ class comment
         $result = $db->pdo_query($sql);
         return $result;
     }
+    public function ser_cmt($cmt_id){
+        $db = new connect();
+        $sql =  "SELECT * 
+        FROM postscomment
+        INNER JOIN userproflie ON postscomment.user_id = userproflie.user_id
+        WHERE postscomment.cmt_id = '$cmt_id'
+        ORDER BY postscomment.cmt_id DESC";
+        $result = $db->pdo_query($sql);
+        return $result;
+    }
     
 
   

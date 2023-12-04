@@ -70,7 +70,15 @@ class looking_for_friends
     public function list_frents($user_id)
     {
         $db = new connect();
-        $sql =  "SELECT userproflie.name_count,users.user_id, userproflie.avatar, friendship.friendship_id, friendship.following_id, friendship.status, friendship.user_id FROM friendship INNER JOIN users ON users.user_id = friendship.user_id INNER JOIN userproflie ON userproflie.user_id = users.user_id WHERE friendship.status = 'Kết bạn thành công' AND (friendship.following_id = '$user_id' OR friendship.user_id = '$user_id' );";
+        $sql =  "SELECT userproflie.name_count, users.user_id as user, userproflie.avatar, friendship.friendship_id, friendship.following_id, friendship.status, friendship.user_id FROM friendship INNER JOIN users ON users.user_id = friendship.user_id INNER JOIN userproflie ON userproflie.user_id = users.user_id WHERE friendship.status = 'Kết bạn thành công' AND (friendship.user_id = '$user_id' or friendship.following_id = '$user_id') UNION SELECT userproflie.name_count, users.user_id as user, userproflie.avatar, friendship.friendship_id, friendship.following_id, friendship.status, friendship.user_id FROM friendship INNER JOIN users ON users.user_id = friendship.following_id INNER JOIN userproflie ON userproflie.user_id = users.user_id WHERE friendship.status = 'Kết bạn thành công' AND (friendship.user_id = '$user_id' or friendship.following_id = '$user_id');";
+        $result = $db->pdo_query($sql);
+        return $result;
+    }
+    public function notifications($user_id)
+    {
+        $db = new connect();
+        $sql =  "SELECT userproflie.name_count AS name_fl, userproflie.avatar AS avatar, postscomment.comment, postscomment.user_id as user_cm, posts.content as content, postscomment.date_cmt, posts.posts_id,postscomment.cmt_id 
+        FROM postscomment INNER JOIN users ON users.user_id = postscomment.user_id INNER JOIN userproflie ON users.user_id = userproflie.user_id INNER JOIN friendship ON users.user_id = friendship.user_id INNER JOIN posts ON users.user_id = posts.user_id WHERE friendship.status = 'Kết bạn thành công' AND (friendship.following_id = '$user_id' OR friendship.user_id = '$user_id') GROUP BY name_fl, avatar, postscomment.comment,user_cm,content,  postscomment.date_cmt,posts.posts_id,postscomment.cmt_id";
         $result = $db->pdo_query($sql);
         return $result;
     }
