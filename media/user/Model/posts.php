@@ -27,6 +27,7 @@ class posts
         $result = $db->pdo_query($sql);
         return $result; 
     }
+
     public function getPost($user_id){
         $db = new connect();
         $sql = 'SELECT users.user_id, userproflie.name_count, userproflie.avatar, posts.posts_id, posts.content, posts.date_post
@@ -53,7 +54,6 @@ class posts
         $result = $db->pdo_query($sql);
         return $result;
     }
-
 
     public function getfile($posts_id){
         $db = new connect();
@@ -87,6 +87,5 @@ class posts
         return ($result1 && $result2 && $result3); // Trả về true nếu cả ba lệnh đều thành công
     }
     
-
 
 }

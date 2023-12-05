@@ -1,4 +1,5 @@
 
+
 :root {
   --main: #08d5a9;
 }
@@ -15,6 +16,7 @@
   border: 2px solid #08d5a9;
   border-radius: 50%;
 }
+
 .custom-file-upload {
   border: 1px solid #08d5a9;
   display: inline-block;
@@ -70,6 +72,7 @@ button[name="btn-change-img"] {
   z-index: 50;
   bottom: -20px;
   left: 45%;
+
 }
 
 .btn-post {
@@ -109,5 +112,42 @@ button[name="btn-change-img"] {
 /* CSS cho ẩn hiện comment */
 .hiddenDiv {
   display: none;
+
 }
 
+.btn-post {
+  border-radius: 10px;
+  border: 1px solid var(--main);
+  background-color: #fff;
+  color: var(--main);
+}
+
+.preview-image {
+  width: 100px;
+  /* Đổi kích thước ảnh nếu cần */
+  height: 100px;
+  margin-right: 10px;
+  /* Thêm margin nếu cần */
+  /* Thêm các thuộc tính CSS khác tùy ý */
+}
+
+/* Định dạng các ảnh */
+.post-meta-img{
+
+}
+.post-meta-img img {
+  height: auto;
+  max-width: 300px;
+  max-height: 450px;
+  /* min-height:200px; */
+  /* border:1px solid var(--main); */
+  margin:3px;
+}
+
+/* Hiển thị tối đa 5 ảnh */
+.post-meta-img img:nth-child(n + 5) {
+  height: auto;
+  max-width: 200px;
+
+  max-height: 450px; /* Ẩn các ảnh từ ảnh thứ 6 trở đi */
+}
