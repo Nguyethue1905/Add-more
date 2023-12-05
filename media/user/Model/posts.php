@@ -6,6 +6,7 @@ class posts
     var $filename = null;
     var $posts_id = null;
     var $friendship_id  = null;
+    var $postlike_id  = null;
     
     public function addPost($user_id, $content)
     {
@@ -87,5 +88,31 @@ class posts
         return ($result1 && $result2 && $result3); // Trả về true nếu cả ba lệnh đều thành công
     }
     
+
+    public function addLike($posts_id,$user_id){
+        $db = new connect();
+        $sql =  "INSERT INTO `postlike` (`posts_id`,`user_id`) VALUES ('$posts_id', '$user_id')";
+        $result = $db->pdo_query_one($sql);
+        return $result; 
+    }
+    public function deleteLike($postlike_id){
+        $db = new connect();
+        $sql =  "DELETE FROM `postlike` WHERE `postlike_id` = '$postlike_id'";
+        $result = $db->pdo_query_one($sql);
+        return $result; 
+    }
+    public function getLike($posts_id,$user_id){
+        $db = new connect();
+        $sql =  "SELECT * FROM `postlike` WHERE user_id = '$user_id' AND posts_id= '$posts_id'";
+        $result = $db->pdo_query_one($sql);
+        return $result; 
+    }
+    public function getIdLike($posts_id, $user_id){
+        $db = new connect();
+        $sql =  "SELECT postlike_id FROM `postlike` WHERE user_id = '$user_id' AND posts_id= '$posts_id'";
+        $result = $db->pdo_query_one($sql);
+        return $result; 
+    }
+
 
 }

@@ -66,3 +66,37 @@ if($_POST['action'] == 'getyes'){
 	}
     echo true;
 }
+
+
+//Like posts
+if($_POST['action'] == 'addLike'){
+    $user_id = $_POST['user_id'] ;
+    $posts_id = $_POST['posts_id'];
+    $db = new posts();
+    $add = $db->addLike($posts_id, $user_id);
+    
+    if($add){
+        echo "Thêm like thành công";
+        echo json_encode(false); 
+        
+    } else {
+        echo "Thêm like không thành công";
+        echo json_encode(true);
+    }
+}
+
+//Unlike posts
+if($_POST['action'] == 'deleteLike'){
+    $postlike_id = $_POST['postlike_id'];
+    $db = new posts();
+    $delete = $db->deleteLike($postlike_id);
+    if($delete){
+        echo "Xóa like thành công";
+        // Trả về true nếu thành công
+        echo json_encode(false);
+    } else {
+        echo "Xóa like không thành công";
+        // Trả về false nếu không thành công
+        echo json_encode(true);
+    }
+}

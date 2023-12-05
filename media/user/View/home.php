@@ -91,16 +91,45 @@ $select = $db->getList($user_id);
                             <ul>
                                 <!-- like -->
                                 <li>
-                                    <span class="like" data-toggle="tooltip" title="like">
-                                        <i class="ti-heart"></i>
-                                        <ins>2.2k</ins>
+                                    <span class="like" data-postid="<?= $get['posts_id'] ?>" title="like">
+                                        <?php
+                                        $getdt = new posts();
+                                        $user_id = $_SESSION['id'];
+                                        $like = $getdt->getLike($posts_id, $user_id);
+                                        $idLike = '';
+
+                                        if ($like) {
+                                            $idLike = $getdt->getIdLike($posts_id, $user_id);
+                                            echo '
+                                                    <a type="submit" class="unlikeInput"  name="unlikeInput" data-postunlike="'.$idLike['postlike_id'].'">
+                                                        <i class="fa-solid fa-heart"style="color: #08d5a9;font-size:24px;"></i>
+                                                    </a>
+                                                ';
+                                            if (isset($_POST['unlike'])) {
+                                                $postlike_id = $idLike['postlike_id']; ;
+                                                $db = new posts();
+                                                $delete = $db->deleteLike($postlike_id);
+                                                header('Location: ./index.php?act=home');
+                                                exit();
+                                               
+                                            }
+                                        } elseif ($like == "") {
+                                            echo '
+                                                    
+                                                    <a type="submit"  <a class="likeInput"  name="likeInput" data-postlike="'.$get['posts_id'].'">
+                                                    <i class="fa-regular fa-heart" style="color: #08d5a9; font-size:24px;"></i> </a>
+                                                ';                 
+                                        }
+
+                                        ?>
                                     </span>
                                 </li>
+                            
                                 <!-- cmt -->
                                 <li>
                                     <span class="comment" data-toggle="tooltip" title="Comments">
-                                        <i class="fa fa-comments-o"></i>
-                                        <ins>52</ins>
+                                        <i class="fa-solid fa-comment" style="color: #08d5a9; font-size:24px;"></i>
+                                        <ins></ins>
                                     </span>
                                 </li>
                                 <!-- share -->
@@ -178,6 +207,7 @@ $select = $db->getList($user_id);
                     </ul>
                 </div>
                 <!-- cmt deatail end -->
+
             </div>
         </div>
     <?php }  ?>
@@ -223,7 +253,6 @@ $user_id = $_SESSION['id'];
             var content = $('#binhluan_' + post_id).val();
             var user_id_in_js = <?php echo json_encode($user_id); ?>;
 
-            console.log(post_id, user_id_in_js, content);
             $.ajax({
                 url: "/user/ajax.php",
                 method: "POST",
@@ -246,5 +275,69 @@ $user_id = $_SESSION['id'];
             });
         });
     });
-</script>
 
+
+
+
+    //like post
+    jQuery(document).ready(function($) {
+        $(document).on("click", ".likeInput", function() {
+            var button = $(this);
+            var post_id = button.data('postlike');
+            var user_id_in_js = <?php echo json_encode($user_id); ?>;
+
+            $.ajax({
+                url: "/user/ajax.php",
+                method: "POST",
+                data: {
+                    action: "addLike",
+                    posts_id: post_id,
+                    user_id: user_id_in_js,
+                    
+                },
+                success: function(result) {
+                    $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+                    console.log(result);
+                    if (result == true) {
+                        console.log('thành công');
+                       
+                    } else {
+                        console.log('lỗi');
+                        location.reload();
+                    }
+                }
+            });
+        });
+    });
+
+    //unlike post
+    jQuery(document).ready(function($) {
+        $(document).on("click", ".unlikeInput", function() {
+            var button = $(this);
+            var like_id = button.data('postunlike');
+
+            console.log(like_id);
+            $.ajax({
+                url: "/user/ajax.php",
+                method: "POST",
+                data: {
+                    action: "deleteLike",
+                    postlike_id: like_id,
+                    
+                    
+                },
+                success: function(result) {
+                    $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+                    console.log(result);
+                    if (result == true) {
+                        console.log('thành công');
+                        location.reload();
+                    } else {
+                        console.log('lỗi');
+                        location.reload();
+                    }
+                }
+            });
+        });
+    });
+</script>
