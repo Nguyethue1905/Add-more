@@ -38,4 +38,11 @@ class home
         $result = $db->pdo_query($sql);
         return $result;
     }
+    public function getCountuser(){
+        $db = new connect();
+        $sql = "SELECT COUNT(posts.posts_id) AS count, users.user_id ,userproflie.name_count as name FROM `posts` INNER JOIN users ON posts.user_id = users.user_id INNER JOIN userproflie ON userproflie.user_id = users.user_id GROUP BY users.user_id ,userproflie.name_count";
+        $result = $db->pdo_query($sql);
+        return $result;
+    }
+
 }

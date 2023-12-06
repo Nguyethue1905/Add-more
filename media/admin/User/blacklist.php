@@ -54,7 +54,7 @@
                                                 <td>'.$item['email'].'</td>
                                                 <td>
                                                     <form action="" method="post">
-                                                    <a href="index.php?act=unlock&id='.$item['user_id'].'">vhadsv</a>
+                                                    <a href="index.php?act=unlock&id='.$item['user_id'].'"><button type="button" class="btn btn-info">Mở khóa</button></a>
                                                     </form>
                                                     </td>
                                                </tr>
