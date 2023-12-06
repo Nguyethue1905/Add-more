@@ -8,7 +8,7 @@
             <div class="row column_title">
                <div class="col-md-12">
                   <div class="page_title">
-                     <h2>Quản Lý Comment</h2>
+                     <h2>Quản Lý Bình Luận</h2>
                   </div>
                </div>
             </div>
@@ -19,7 +19,7 @@
                      <div class="white_shd full margin_bottom_30">
                         <div class="full graph_head">
                            <div class="heading1 margin_0">
-                              <h2>Quản Lý Comment</h2>
+                              <h2>Quản Lý Bình Luận</h2>
                            </div>
                         </div>
                         <div class="table_section padding_infor_info">
@@ -28,9 +28,9 @@
                                  <thead>
                                     <tr>
                                     <th class="font-weight-bold">STT</th>
-                                       <th class="font-weight-bold">Id Người Post</th>
-                                       <th class="font-weight-bold">Nội Dung Bài Post</th>
-                                       <th class="font-weight-bold">Count</th>
+                                       <th class="font-weight-bold">Id Người Đăng</th>
+                                       <th class="font-weight-bold">Nội Dung Bài Đăng</th>
+                                       <th class="font-weight-bold">Số Lượng</th>
                                        <th></th>
                                     </tr>
                                  </thead>

@@ -9,7 +9,7 @@
                             <div class="white_shd full margin_bottom_30">
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
-                                        <h2>Chi Tiết Bài Post</h2>
+                                        <h2>Chi Tiết Bình Luận</h2>
                                     </div>
                                 </div>
                                 <div class="table_section padding_infor_info">
@@ -31,16 +31,19 @@
                                                 $comment = new comment();
                                                 $get = $comment->getList($posts_id);
                                                 foreach ($get as $item) {
-                                                    echo '
-                                                <tr>
-                                                <td>' . $tl++ . '</td>
-                                                    <td>' . $item['username'] . '</td>
-                                                    <td>' . $item['comment'] . '</td>
-                                                    <td>' . $item['date_cmt'] . '</td>
-                                                    <td><a href="index.php?act=del&id='.$item['cmt_id'].'&id_pt='.$posts_id.'"><button type="button" class="btn btn-danger">Xóa</button></a></td>
-                                                </tr>
-                                                ';
+                                                    $cmt_status = $item ['cmt_status'];
+                                                    if ($cmt_status == 'Active'){
+                                                        echo '
+                                                        <tr>
+                                                        <td>' . $tl++ . '</td>
+                                                            <td>' . $item['username'] . '</td>
+                                                            <td>' . $item['comment'] . '</td>
+                                                            <td>' . $item['date_cmt'] . '</td>
+                                                            <td><a href="index.php?act=del&id='.$item['cmt_id'].'&id_pt='.$posts_id.'"><button type="button" class="btn btn-danger">Ẩn</button></a></td>
+                                                        </tr>
+                                                        ';
                                                 }
+                                            }
                                                 ?>
                                             </tbody>
                                         </table>

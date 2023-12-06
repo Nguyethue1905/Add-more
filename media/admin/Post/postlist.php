@@ -11,7 +11,7 @@ class post
     public function getList($user_id)
     {
         $db = new connect();
-        $sql = 'SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.user_id =' . $user_id;
+        $sql = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id INNER JOIN image ON posts.posts_id =image.posts_id WHERE posts.user_id = '$user_id' " ;
         $result = $db->pdo_query($sql);
         return $result;
     }
@@ -25,14 +25,13 @@ class post
     public function getCount()
     {
         $db = new connect();
-        $sql = 'SELECT users.user_id,users.username,COUNT(posts.posts_id) AS count FROM users LEFT JOIN posts ON users.user_id = posts.user_id GROUP BY users.user_id,users.username;';
+        $sql = 'SELECT users.user_id,users.username,COUNT(posts.posts_id) AS count FROM users LEFT JOIN posts ON users.user_id = posts.user_id AND posts.post_status = "Active" GROUP BY users.user_id,users.username;';
         $result = $db->pdo_query($sql);
         return $result;
     }
-    public function xoa($posts_id)
-    {
+    public function xoa($posts_id){
         $db = new connect();
-        $sql = "DELETE FROM posts WHERE posts_id=" . $posts_id;
+        $sql = "UPDATE posts SET `post_status` = 'Inactive' WHERE `posts_id` = '$posts_id'";
         $result = $db->pdo_query_one($sql);
         return $result;
     }

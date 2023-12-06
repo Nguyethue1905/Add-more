@@ -18,13 +18,13 @@
       </div>
    </div>
    <div class="sidebar_blog_2">
-      <h4>General</h4>
+      <h4>Mennu</h4>
       <ul class="list-unstyled components">
          <li class="active">
          </li>
-         <li><a href="index.php?act=cmt"><i class="fa fa-diamond purple_color"></i> <span>Quản Lý Comment</span></a></li>
-         <li><a href="index.php?act=qlpost"><i class="fa fa-table purple_color2"></i> <span>Quản Lý Post</span></a></li>
-         <li><a href="index.php?act=qluser"><i class="fa fa-briefcase blue1_color"></i> <span>Quản Lý User</span></a>
+         <li><a href="index.php?act=cmt"><i class="fa fa-diamond purple_color"></i> <span>Quản Lý Bình Luận</span></a></li>
+         <li><a href="index.php?act=qlpost"><i class="fa fa-table purple_color2"></i> <span>Quản Lý Bài Đăng</span></a></li>
+         <li><a href="index.php?act=qluser"><i class="fa fa-briefcase blue1_color"></i> <span>Quản Lý Tài Khoản</span></a>
          </li>
    </div>
 </nav>

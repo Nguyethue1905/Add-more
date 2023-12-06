@@ -1,4 +1,3 @@
-
 <body class="dashboard dashboard_1">
     <div class="full_container">
         <div class="inner_container">
@@ -9,7 +8,7 @@
                             <div class="white_shd full margin_bottom_30">
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
-                                        <h2>Chi Tiết User</h2>
+                                        <h2>Chi Tiết Tài Khoản/h2>
                                     </div>
                                 </div>
                                 <?php
@@ -17,7 +16,7 @@
                                     $user_id = $_GET['id'];
                                     $db = new User();
                                     $loked = $db->updateUser($user_id);
-                                    
+
                                     header('Location: index.php?act=qluser');
                                 }
                                 ?>
@@ -42,28 +41,30 @@
                                                 $user_id = $_GET['id'];
                                                 $comment = new User();
                                                 $get = $comment->getList($user_id);
-                                                    foreach ($get as $item) {
-                                                        $date = $item['date_registered'];
-                                                        echo ' 
-                                                <tr>
-                                                <td>' . $item['user_id'] . '</td>
-                                                <td>' . $item['name_count'] . '</td>
-                                                    <td>' . $item['brithdate'] . '</td>
-                                                    <td>' . $item['gander'] . '</td>
-                                                    <td>' . $item['avatar'] . '</td>
-                                                    <td>' . $item['cover_img'] . '</td>
-                                                    <td>' . $item['phone'] . '</td>
-                                                    <td>' . $item['address'] . '</td>
-                                                    <td>' . $date . '</td>
-                                                    <td>
-                                                    <form action="" method="post">
-                                                    <button type="submit" name="loked" class="btn btn-danger">Khóa</button>
-                                                    </form>
-                                                    </td>
-                                                </tr>
-                                                ';
-                                                    }
-
+                                                foreach ($get as $item) {
+                                                    $date = $item['date_registered'];
+                                                    $avatar = !empty($item['avatar']) ? '<img src="../../user/View/images/uploads/' . $item['avatar'] . '" alt="#" style="width: 50px"/>' : '';
+                                                    $cover_img = !empty($item['cover_img']) ? '<img src="../../user/View/images/uploads/' . $item['cover_img'] . '" alt="#" style="width: 200px"/>' : '';
+                                                    echo ' 
+                                                        <tr>
+                                                            <td>' . $item['user_id'] . '</td>
+                                                            <td>' . $item['name_count'] . '</td>
+                                                            <td>' . $item['brithdate'] . '</td>
+                                                            <td>' . $item['gander'] . '</td>
+                                                            <td>' . $avatar . '</td>
+                                                            <td>' . $cover_img . '</td>
+                                                            <td>' . $item['phone'] . '</td>
+                                                            <td>' . $item['address'] . '</td>
+                                                            <td>' . $date . '</td>
+                                                            <td>
+                                                                <form action="" method="post">
+                                                                    <button type="submit" name="loked" class="btn btn-danger">Khóa</button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    ';
+                                                }
+                                                
                                                 ?>
                                             </tbody>
                                         </table>
@@ -76,7 +77,7 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>

@@ -7,7 +7,6 @@ class comment
     var $comment  = null;
     var $date_cmt  = null;
 
-
     public function getList($posts_id)
     {
         $db = new connect();
@@ -18,14 +17,14 @@ class comment
     public function getCount()
     {
         $db = new connect();
-        $sql = 'SELECT *, (SELECT COUNT(*) FROM postscomment WHERE postscomment.posts_id = posts.posts_id) AS count FROM posts';
+        $sql = 'SELECT posts.*, COUNT(postscomment.posts_id) AS count FROM posts JOIN postscomment ON posts.posts_id = postscomment.posts_id AND postscomment.cmt_status = "Active" GROUP BY posts.posts_id;';
         $result = $db->pdo_query($sql);
         return $result;
     }
     public function xoa($cmt_id)
     {
         $db = new connect();
-        $sql = "DELETE FROM postscomment WHERE cmt_id=" . $cmt_id;
+        $sql = "UPDATE postscomment SET `cmt_status` = 'Inactive' WHERE `cmt_id` = '$cmt_id'";
         $result = $db->pdo_query_one($sql);
         return $result;
     }

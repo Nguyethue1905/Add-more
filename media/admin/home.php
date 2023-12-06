@@ -173,7 +173,6 @@
                                              }
                                           });
                                        </script>
-                                       <div id="donutchart" style="width: 900px; height: 520px;"></div>
                                     </div>'
                                  </div>
                               </div>

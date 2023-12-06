@@ -7,7 +7,7 @@
                   <div class="row column_title">
                      <div class="col-md-12">
                         <div class="page_title">
-                           <h2>Quản Lý User</h2>
+                           <h2>Quản Lý Tài khoản</h2>
 
                         </div>
                      </div>
@@ -18,8 +18,8 @@
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Quản Lý User</h2>
-                                    <a href="index.php?act=black"> <button type="button" class="btn btn-success" style="background-color: #508D69; margin-left: 750%;">BlackList</button></a>
+                                    <h2>Quản Lý Tài khoản</h2>
+                                    <a href="index.php?act=black"> <button type="button" class="btn btn-success" style="background-color: #508D69; margin-left: 504%;">BlackList</button></a>
                                  </div>
                               </div>
                               <div class="table_section padding_infor_info">
@@ -29,12 +29,12 @@
                                           <tr>
                                           <tr>
                                              <th class="font-weight-bold">#</th>
-                                             <th class="font-weight-bold">UserName</th>
+                                             <th class="font-weight-bold">Tài khoản</th>
 
-                                             <th class="font-weight-bold">password</th>
+                                             <th class="font-weight-bold">Mật Khẩu</th>
                                              </th>
                                              <th class="font-weight-bold">Email</th>
-                                             <th class="font-weight-bold">Profile</th>
+                                             <th class="font-weight-bold">Thông tin</th>
                                              
                                           </tr>
                                           </tr>

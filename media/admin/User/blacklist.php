@@ -29,9 +29,9 @@
                                           <tr>
                                              <th class="font-weight-bold">#</th>
                                              <th class="font-weight-bold">Mã tài khoản</th>
-                                             <th class="font-weight-bold">UserName</th>
+                                             <th class="font-weight-bold">Tài khoản</th>
 
-                                             <th class="font-weight-bold">password</th>
+                                             <th class="font-weight-bold">Mật Khâủ</th>
                                              </th>
                                              <th class="font-weight-bold">Email</th>                                             
                                           </tr>
@@ -44,7 +44,6 @@
                                           $selecct =$listuser->getUser();
                                           foreach ($selecct as $item) {
                                             $user_status = $item['user_status'];
-                                            
                                             if($user_status == 3)
                                              echo '
                                              <tr>

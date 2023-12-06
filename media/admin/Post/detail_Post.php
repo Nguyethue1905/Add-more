@@ -11,7 +11,7 @@
                             <div class="white_shd full margin_bottom_30">
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
-                                        <h2>Chi Tiết Bài Post</h2>
+                                        <h2>Chi Tiết Bài Đăng</h2>
                                     </div>
                                 </div>
                                 <div class="table_section padding_infor_info">
@@ -19,9 +19,9 @@
                                         <table class="table">
                                             <thead></thead>
                                             <tr>
-                                                <th class="font-weight-bold">Người Post</th>
+                                                <th class="font-weight-bold">Người Đăng</th>
                                                 <th class="font-weight-bold">Ảnh</th>
-                                                <th class="font-weight-bold">Cap</th>
+                                                <th class="font-weight-bold">Nội Dung</th>
                                                 <th class="font-weight-bold">Thời Gian</th>
                                                 <th class="font-weight-bold">Xóa</th>
                                             </tr>
@@ -32,15 +32,22 @@
                                                  $listuser = new post();
                                                  $selecct =  $listuser->getList($user_id);
                                                  foreach ($selecct as $item ) {
-                                                    echo '
-                                                <tr>
-                                                    <td>'.$item['username'].'</td>
-                                                    <td></td>
-                                                    <td>'.$item['content'].'</td>
-                                                    <td>'.$item['date_post'].'</td>
-                                                    <td><a href="index.php?act=xoa&id='.$item['posts_id'].'"><button type="button" class="btn btn-danger">Xóa</button></a></td>
-                                                </tr>
-                                                ';}
+                                                    $post_status = $item ['post_status'];
+                                                    if ($post_status == 'Active'){
+                                                        echo '
+                                                        <tr>
+                                                            <td>'.$item['username'].'</td>
+                                                            <td>'.$item['img_id'].'</td>
+                                                            <td>'.$item['content'].'</td>
+                                                            <td>'.$item['date_post'].'</td>
+                                                            
+                                                            <td><a href="index.php?act=xoa&id='.$item['posts_id'].'"><button type="button" class="btn btn-danger">Ẩn</button></a></td>
+                                                        </tr>
+                                                        ';
+                                                    }else{
+                                                        echo"";
+                                                    }
+                                                 }
                                                 ?>
                                             </tbody>
                                         </table>
