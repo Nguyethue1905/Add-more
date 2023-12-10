@@ -33,11 +33,12 @@
                                                  $selecct =  $listuser->getList($user_id);
                                                  foreach ($selecct as $item ) {
                                                     $post_status = $item ['post_status'];
+                                                    $filename = !empty($item['filename']) ? '<img src="../../user/View/images/uploads/' . $item['filename'] . '" alt="#" style="width: 50px"/>' : '';
                                                     if ($post_status == 'Active'){
                                                         echo '
                                                         <tr>
                                                             <td>'.$item['username'].'</td>
-                                                            <td>'.$item['img_id'].'</td>
+                                                            <td>'.$filename.'</td> 
                                                             <td>'.$item['content'].'</td>
                                                             <td>'.$item['date_post'].'</td>
                                                             

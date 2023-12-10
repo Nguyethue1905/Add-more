@@ -8,7 +8,7 @@
                             <div class="white_shd full margin_bottom_30">
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
-                                        <h2>Chi Tiết Tài Khoản/h2>
+                                        <h2>Chi Tiết Tài Khoản </h2>
                                     </div>
                                 </div>
                                 <?php
@@ -25,15 +25,15 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th class="font-weight-bold"> mã Người dùng </th>
-                                                    <th class="font-weight-bold"> Tên Người Dùng </th>
-                                                    <th class="font-weight-bold">Ngày Sinh</th>
-                                                    <th class="font-weight-bold">Giới Tính</th>
-                                                    <th class="font-weight-bold">ảnh đại diện</th>
-                                                    <th class="font-weight-bold">ảnh bìa</th>
-                                                    <th class="font-weight-bold">Số Điện Thoại</th>
-                                                    <th class="font-weight-bold">Địa Chỉ</th>
-                                                    <th class="font-weight-bold">Ngày Đăng Kí</th>
+                                                    <th class="font-weight-bold"style="width: 140px;">ID Người dùng</th>
+                                                    <th class="font-weight-bold"style="width: 150px">Tên Người Dùng</th>
+                                                    <th class="font-weight-bold"style="width: 110px">Ngày Sinh</th>
+                                                    <th class="font-weight-bold"style="width: 110px">Giới Tính</th>
+                                                    <th class="font-weight-bold"style="width: 120px">ảnh đại diện</th>
+                                                    <th class="font-weight-bold">Ảnh Bìa</th>
+                                                    <th class="font-weight-bold"style="width: 120px">Số Điện Thoại</th>
+                                                    <th class="font-weight-bold"style="width: 120px">Địa Chỉ</th>
+                                                    <th class="font-weight-bold"style="width: 130px">Ngày Đăng Kí</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -44,10 +44,10 @@
                                                 foreach ($get as $item) {
                                                     $date = $item['date_registered'];
                                                     $avatar = !empty($item['avatar']) ? '<img src="../../user/View/images/uploads/' . $item['avatar'] . '" alt="#" style="width: 50px"/>' : '';
-                                                    $cover_img = !empty($item['cover_img']) ? '<img src="../../user/View/images/uploads/' . $item['cover_img'] . '" alt="#" style="width: 200px"/>' : '';
+                                                    $cover_img = !empty($item['cover_img']) ? '<img src="../../user/View/images/uploads/' . $item['cover_img'] . '" alt="#" style="width: 70px"/>' : '';
                                                     echo ' 
                                                         <tr>
-                                                            <td>' . $item['user_id'] . '</td>
+                                                            <td style="text-align: center;">' . $item['user_id'] . '</td>
                                                             <td>' . $item['name_count'] . '</td>
                                                             <td>' . $item['brithdate'] . '</td>
                                                             <td>' . $item['gander'] . '</td>

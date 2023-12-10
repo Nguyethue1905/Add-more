@@ -11,7 +11,7 @@ class post
     public function getList($user_id)
     {
         $db = new connect();
-        $sql = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id INNER JOIN image ON posts.posts_id =image.posts_id WHERE posts.user_id = '$user_id' " ;
+        $sql = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id INNER JOIN image ON posts.posts_id = image.posts_id WHERE posts.user_id = '$user_id' GROUP BY image.img_id " ;
         $result = $db->pdo_query($sql);
         return $result;
     }

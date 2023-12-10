@@ -52,7 +52,7 @@ class singin
       if ($add == true && $user_status == '1') {
         $id = $login->getUserid($username, $password);
         if ($id == true){
-          foreach ($id as $ro) {
+          foreach ($id as $ro) {  
             $_SESSION['admin'] = $username;
             $_SESSION['id'] = $id['user_id'];
             header("Location: ./index.php?act=home");

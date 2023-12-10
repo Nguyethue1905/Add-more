@@ -38,12 +38,12 @@
                                              
                                           </tr>
                                           </tr>
-                                       </thead>
+                                       </thead>          
                                        <tbody>
                                           <?php
-                                          $listuser = new User();
-                                          $selecct =$listuser->getUser();
-                                          foreach($selecct as $item){
+                                             $listuser = new User();
+                                             $selecct =$listuser->getUser();
+                                             foreach($selecct as $item){
                                              $user_status = $item['user_status'];
                                              if ($user_status == 3){
                                                echo "";
